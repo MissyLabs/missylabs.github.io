@@ -17,6 +17,10 @@
          <lastmod>2026-03-17</lastmod>
     </url>
     <url>
+         <loc>https://missylabs.github.io/architecture/attention/</loc>
+         <lastmod>2026-03-17</lastmod>
+    </url>
+    <url>
          <loc>https://missylabs.github.io/architecture/circuit-breaker/</loc>
          <lastmod>2026-03-17</lastmod>
     </url>
@@ -25,7 +29,23 @@
          <lastmod>2026-03-17</lastmod>
     </url>
     <url>
+         <loc>https://missylabs.github.io/architecture/memory-synthesizer/</loc>
+         <lastmod>2026-03-17</lastmod>
+    </url>
+    <url>
+         <loc>https://missylabs.github.io/architecture/message-bus/</loc>
+         <lastmod>2026-03-17</lastmod>
+    </url>
+    <url>
+         <loc>https://missylabs.github.io/architecture/playbook/</loc>
+         <lastmod>2026-03-17</lastmod>
+    </url>
+    <url>
          <loc>https://missylabs.github.io/architecture/progress-reporting/</loc>
+         <lastmod>2026-03-17</lastmod>
+    </url>
+    <url>
+         <loc>https://missylabs.github.io/architecture/sleep-mode/</loc>
          <lastmod>2026-03-17</lastmod>
     </url>
     <url>
