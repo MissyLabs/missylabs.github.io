@@ -153,6 +153,11 @@ nav:
     - Context Management: architecture/context-management.md
     - Circuit Breaker: architecture/circuit-breaker.md
     - Progress Reporting: architecture/progress-reporting.md
+    - AI Playbook: architecture/playbook.md
+    - Sleep Mode: architecture/sleep-mode.md
+    - Memory Synthesizer: architecture/memory-synthesizer.md
+    - Attention System: architecture/attention.md
+    - Message Bus: architecture/message-bus.md
 
   - CLI Reference:
     - cli/index.md

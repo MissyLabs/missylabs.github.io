@@ -198,6 +198,66 @@ The runtime emits structured audit events at each stage:
 | `agent.run.complete` | Run finishes, provider and tools used recorded |
 | `agent.tool.strategy_rotation` | Tool failure threshold hit, strategy prompt injected |
 
+## Integrated Intelligence Subsystems
+
+The runtime integrates four intelligence subsystems that enhance the agent loop beyond basic tool execution:
+
+### Attention System
+
+At the **start of each iteration**, the runtime runs `AttentionSystem.process()` on the user input:
+
+- **Urgency detection** flags high-priority requests for immediate tool dispatch.
+- **Topic extraction** identifies what the user is focused on.
+- **Focus continuity** tracks whether the user has been on the same topic across turns.
+- **Tool prioritization** suggests which tools to favor based on urgency and topics.
+- **Context filtering** provides topic words to the memory synthesizer for selective retrieval.
+
+See [Attention System](attention.md) for the full five-subsystem breakdown.
+
+### Memory Consolidation (Sleep Mode)
+
+Before context assembly, the runtime checks whether the token window is approaching capacity. If usage reaches **80% of max_tokens**, the `MemoryConsolidator` compresses older messages:
+
+1. Keep the last 4 messages intact.
+2. Extract key facts (tool results, decisions, short instructions) from older messages.
+3. Replace older messages with a single summary.
+
+This allows long-running sessions to continue without hitting token limits. See [Sleep Mode](sleep-mode.md).
+
+### AI Playbook
+
+The playbook operates at two points in the loop:
+
+- **Before execution**: `Playbook.get_relevant()` retrieves proven patterns for the current task type, which the [Memory Synthesizer](memory-synthesizer.md) injects into context.
+- **After execution**: When a tool-augmented run succeeds, `Playbook.record()` captures the task type, tool sequence, and a prompt hint for future replay.
+
+Patterns with 3+ successes are flagged for promotion to full skills. See [AI Playbook](playbook.md).
+
+### Memory Synthesizer
+
+During context assembly, the `MemorySynthesizer` replaces the previous approach of injecting learnings and playbook entries separately. It:
+
+1. Collects fragments from all memory sources (learnings at 0.7, playbook at 0.6, conversation at 0.5, summaries at 0.4).
+2. Scores each fragment against the current query using keyword overlap.
+3. Deduplicates near-identical fragments.
+4. Produces a single relevance-ranked block within a 4500-token budget.
+
+See [Memory Synthesizer](memory-synthesizer.md).
+
+### Message Bus Integration
+
+The runtime publishes lifecycle events via the [Message Bus](message-bus.md):
+
+| Event | Topic | When |
+|---|---|---|
+| Run start | `agent.run.start` | `run()` is called |
+| Run complete | `agent.run.complete` | Run finishes successfully |
+| Run error | `agent.run.error` | Run fails with an error |
+| Tool request | `tool.request` | Before executing a tool call |
+| Tool result | `tool.result` | After a tool call completes |
+
+Other subsystems (audit logger, attention system, custom handlers) subscribe to these events for decoupled observation.
+
 ## Capability Modes
 
 The `capability_mode` field controls which tools and system prompt are available:

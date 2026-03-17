@@ -50,7 +50,7 @@ WebSocket voice channel with dedicated **Raspberry Pi edge nodes**. Wake word de
 
 ### :material-robot: Agentic Runtime
 
-Multi-step tool loop with circuit breaker, checkpoint/recovery, cost tracking, and budget caps. Sub-agents, learnings extraction, and self-tuning prompt patches. **Interactive approval TUI** surfaces policy-denied operations for real-time operator approval with session-scoped "allow always" memory.
+Multi-step tool loop with circuit breaker, checkpoint/recovery, cost tracking, and budget caps. Sub-agents, learnings extraction, and self-tuning prompt patches. **AI Playbook** auto-captures successful tool patterns and promotes them to skills. **Sleep Mode** consolidates context when the token window fills. **Attention System** tracks urgency, focus, and topic continuity across turns. **Interactive approval TUI** surfaces policy-denied operations for real-time operator approval with session-scoped "allow always" memory.
 
 </div>
 
@@ -66,7 +66,7 @@ Every action logged as structured JSONL — network requests, file access, shell
 
 ### :material-puzzle: Extensible
 
-Built-in tools, skills, plugins, and **MCP server** integration. Digest-pinned MCP connections for supply chain safety. Config presets, auto-migration, plan/rollback for operations. **FAISS vector memory** for semantic search across conversation history. **SKILL.md dynamic discovery** for cross-agent skill portability.
+Built-in tools, skills, plugins, and **MCP server** integration. Digest-pinned MCP connections for supply chain safety. Config presets, auto-migration, plan/rollback for operations. **FAISS vector memory** for semantic search across conversation history. **SKILL.md dynamic discovery** for cross-agent skill portability. **Async Message Bus** with topic wildcards and priority queuing for event-driven subsystem coordination.
 
 </div>
 
@@ -111,10 +111,13 @@ CLI / Discord / Webhook / Voice
     ├── PolicyEngine (network / filesystem / shell / REST L7)
     ├── AgentIdentity (Ed25519) + TrustScorer (0-1000)
     ├── CircuitBreaker + RateLimiter
-    ├── ContextManager (token budget)
+    ├── ContextManager (token budget) + MemoryConsolidator (sleep mode)
+    ├── AttentionSystem (alerting / orienting / sustained / selective / executive)
     ├── ProviderRegistry (Anthropic / OpenAI / Ollama)
     ├── ToolRegistry + MCP Manager + SKILL.md Discovery
-    ├── Memory + Learnings + Vector Memory (FAISS)
+    ├── Memory + Learnings + Vector Memory (FAISS) + MemorySynthesizer
+    ├── Playbook (auto-capture → skill promotion)
+    ├── MessageBus (async events, topic wildcards, priority queue)
     ├── ApprovalGate + InteractiveApproval TUI
     ├── ContainerSandbox (Docker isolation)
     └── AuditLogger + OpenTelemetry

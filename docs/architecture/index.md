@@ -48,6 +48,14 @@ graph TB
         BuiltIn[Built-in Tools]
     end
 
+    subgraph Intelligence["Intelligence"]
+        Playbook[Playbook]
+        Consolidator[MemoryConsolidator]
+        Attention[AttentionSystem]
+        Synthesizer[MemorySynthesizer]
+        Bus[MessageBus]
+    end
+
     subgraph Persistence
         Memory[SQLiteMemoryStore]
         VectorMem[VectorMemoryStore FAISS]
@@ -86,6 +94,17 @@ graph TB
 
     Policy -.->|enforces| Registry
     Policy -.->|enforces| ToolReg
+
+    Runtime --> Playbook
+    Runtime --> Consolidator
+    Runtime --> Attention
+    Runtime --> Synthesizer
+    Synthesizer --> Learnings
+    Synthesizer --> Playbook
+    Synthesizer --> Memory
+    Runtime --> Bus
+    Bus -.->|events| Audit
+    Bus -.->|events| Attention
 
     Runtime --> Memory
     Runtime --> VectorMem
@@ -153,6 +172,14 @@ Additional security subsystems:
 - **AuditLogger** -- Structured JSONL audit trail (`~/.missy/audit.jsonl`), optionally signed with the agent's Ed25519 identity.
 - **Learnings** -- Task outcomes extracted from tool-augmented runs, persisted in SQLite.
 - **CheckpointManager** -- Saves tool loop state for crash recovery.
+
+### Intelligence
+
+- **[Playbook](playbook.md)** -- Auto-captures successful tool-use patterns. Matches by task type + tool sequence hash. Promotes patterns to skill proposals after 3+ successes. JSON persistence at `~/.missy/playbook.json`.
+- **[MemoryConsolidator](sleep-mode.md)** -- Sleep mode that compresses conversation history when the context window reaches 80% capacity. Keeps the last 4 messages intact, extracts key facts from older messages, and replaces them with a summary.
+- **[AttentionSystem](attention.md)** -- Five-subsystem pipeline: alerting (urgency detection), orienting (topic extraction), sustained (focus continuity), selective (memory filtering), executive (tool prioritization).
+- **[MemorySynthesizer](memory-synthesizer.md)** -- Merges learnings, summaries, playbook entries, and conversation fragments into a single relevance-ranked context block within a 4500-token budget. Replaces separate memory injection.
+- **[MessageBus](message-bus.md)** -- Async event bus with `fnmatch` topic wildcards, priority queue, correlation IDs, and both sync and async dispatch. Singleton pattern shared across all subsystems.
 
 ## Request Flow
 
@@ -226,3 +253,8 @@ sequenceDiagram
 - [Context Management](context-management.md) -- token budget, memory injection, pruning
 - [Circuit Breaker](circuit-breaker.md) -- failure isolation with exponential backoff
 - [Progress Reporting](progress-reporting.md) -- structured progress protocol
+- [AI Playbook](playbook.md) -- auto-capture and replay of successful tool patterns
+- [Sleep Mode](sleep-mode.md) -- memory consolidation when context fills up
+- [Memory Synthesizer](memory-synthesizer.md) -- unified relevance-ranked memory block
+- [Attention System](attention.md) -- five-subsystem focus and priority pipeline
+- [Message Bus](message-bus.md) -- async event routing with topic wildcards
