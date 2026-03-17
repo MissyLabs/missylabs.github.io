@@ -25,6 +25,12 @@ graph TB
         Secrets[SecretsDetector]
         Censor[SecretCensor]
         Policy[PolicyEngine]
+        RestPolicy[RestPolicy L7]
+        Drift[PromptDriftDetector]
+        Identity[AgentIdentity]
+        Trust[TrustScorer]
+        Container[ContainerSandbox]
+        IApproval[InteractiveApproval]
     end
 
     subgraph Providers
@@ -44,6 +50,7 @@ graph TB
 
     subgraph Persistence
         Memory[SQLiteMemoryStore]
+        VectorMem[VectorMemoryStore FAISS]
         Audit[AuditLogger]
         Learnings[Learnings]
         Checkpoint[CheckpointManager]
@@ -60,6 +67,12 @@ graph TB
     Runtime --> Progress
 
     Sanitizer --> Policy
+    Policy --> RestPolicy
+    Runtime --> Identity
+    Runtime --> Trust
+    Runtime --> Drift
+    Runtime --> Container
+    Runtime --> IApproval
     Runtime --> Registry
     Registry --> Router
     Router --> RL
@@ -75,6 +88,7 @@ graph TB
     Policy -.->|enforces| ToolReg
 
     Runtime --> Memory
+    Runtime --> VectorMem
     Runtime --> Audit
     Runtime --> Learnings
     Runtime --> Checkpoint
@@ -123,10 +137,20 @@ MCP (Model Context Protocol) servers extend the tool set dynamically. Tools from
 
 All inputs pass through the `InputSanitizer` (prompt injection detection) before reaching the LLM. All outputs pass through the `SecretCensor` (credential redaction) before reaching the user. The `SecretsDetector` identifies 9+ credential patterns (API keys, JWTs, private keys, etc.).
 
+Additional security subsystems:
+
+- **PromptDriftDetector** -- Registers system prompt hashes at session start and verifies them before each provider call, detecting runtime prompt tampering.
+- **AgentIdentity** -- Ed25519 keypair that signs audit events for non-repudiation and tamper detection.
+- **TrustScorer** -- Tracks reliability of providers, MCP servers, and tools on a 0--1000 scale. Untrusted entities trigger warnings or require approval.
+- **ContainerSandbox** -- Docker-based per-session isolation for tool execution, with network disabled, capabilities dropped, and resource limits enforced.
+- **InteractiveApproval** -- TUI that surfaces policy-denied operations for real-time operator approval with session-scoped "allow always" memory.
+- **RestPolicy** -- L7 per-host HTTP method and path rules evaluated after host-level network policy.
+
 ### Persistence
 
 - **SQLiteMemoryStore** -- Conversation history with FTS5 full-text search (`~/.missy/memory.db`).
-- **AuditLogger** -- Structured JSONL audit trail (`~/.missy/audit.jsonl`).
+- **VectorMemoryStore** -- Optional FAISS-backed semantic search over text entries (`~/.missy/memory.faiss`). Uses TF-IDF hashing vectors for approximate nearest-neighbor retrieval without requiring an external embedding model.
+- **AuditLogger** -- Structured JSONL audit trail (`~/.missy/audit.jsonl`), optionally signed with the agent's Ed25519 identity.
 - **Learnings** -- Task outcomes extracted from tool-augmented runs, persisted in SQLite.
 - **CheckpointManager** -- Saves tool loop state for crash recovery.
 

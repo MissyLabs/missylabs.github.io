@@ -45,6 +45,19 @@ network:
   tool_allowed_hosts: []                # list[str], default: []
   discord_allowed_hosts: []             # list[str], default: []
 
+  # L7 REST policies: per-host HTTP method + path rules.
+  # Evaluated after host-level network policy, before dispatch.
+  # First matching rule wins; no match = fall through to network policy.
+  rest_policies:                        # list[dict], default: []
+    - host: "api.github.com"
+      method: "GET"                     # HTTP method or "*" for any
+      path: "/repos/**"                 # fnmatch glob pattern
+      action: "allow"                   # "allow" or "deny"
+    - host: "api.github.com"
+      method: "DELETE"
+      path: "/**"
+      action: "deny"
+
 # ---------------------------------------------------------------------------
 # Filesystem policy
 # ---------------------------------------------------------------------------
@@ -181,6 +194,16 @@ proactive:
       load_threshold: 4.0              # float, default: 4.0 — normalized 1-min load avg
 
 # ---------------------------------------------------------------------------
+# Container sandbox (Docker-based session isolation)
+# ---------------------------------------------------------------------------
+container:
+  enabled: false                        # bool, default: false — master switch
+  image: "python:3.12-slim"            # str, Docker image for sessions
+  memory_limit: "256m"                  # str, Docker --memory value
+  cpu_quota: 0.5                        # float, CPU fraction (--cpus)
+  network_mode: "none"                  # str, Docker --network value
+
+# ---------------------------------------------------------------------------
 # Voice channel
 # ---------------------------------------------------------------------------
 voice:
@@ -237,6 +260,12 @@ max_spend_usd: 0.0                      # float, default: 0.0 (0 = unlimited)
 | `observability.otel_enabled` | `bool` | `false` | OTEL switch |
 | `observability.log_level` | `str` | `"warning"` | Python log level |
 | `vault.enabled` | `bool` | `false` | Vault switch |
+| `network.rest_policies` | `list[dict]` | `[]` | L7 REST policy rules |
+| `container.enabled` | `bool` | `false` | Container sandbox switch |
+| `container.image` | `str` | `"python:3.12-slim"` | Docker image |
+| `container.memory_limit` | `str` | `"256m"` | Memory limit |
+| `container.cpu_quota` | `float` | `0.5` | CPU fraction |
+| `container.network_mode` | `str` | `"none"` | Docker network mode |
 | `proactive.enabled` | `bool` | `false` | Proactive triggers switch |
 | `max_spend_usd` | `float` | `0.0` | Per-session cost cap |
 

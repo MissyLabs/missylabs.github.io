@@ -177,3 +177,71 @@ network:
   allowed_cidrs:
     - "192.168.1.0/24"          # home network devices
 ```
+
+## REST Policy (L7 Method + Path Rules)
+
+For fine-grained control beyond host-level allow/deny, configure **REST policies** that restrict which HTTP methods and URL paths are permitted on a per-host basis. This is evaluated after the host passes network policy and before the request is dispatched.
+
+Rules are matched top-to-bottom; the first matching rule wins. If no rule matches, the standard network policy result applies.
+
+### Configuration
+
+```yaml
+network:
+  rest_policies:
+    # Allow read-only access to GitHub repos
+    - host: "api.github.com"
+      method: "GET"
+      path: "/repos/**"
+      action: "allow"
+
+    # Allow creating issues
+    - host: "api.github.com"
+      method: "POST"
+      path: "/repos/*/issues"
+      action: "allow"
+
+    # Block all DELETE operations
+    - host: "api.github.com"
+      method: "DELETE"
+      path: "/**"
+      action: "deny"
+```
+
+### Rule Fields
+
+| Field | Type | Description |
+|---|---|---|
+| `host` | `str` | Hostname (exact match, case-insensitive) |
+| `method` | `str` | HTTP method (`GET`, `POST`, `DELETE`, etc.) or `*` for any |
+| `path` | `str` | URL path glob pattern (`fnmatch` syntax) |
+| `action` | `str` | `"allow"` or `"deny"` |
+
+### Path Matching Examples
+
+| Pattern | Matches |
+|---|---|
+| `/repos/**` | `/repos/foo`, `/repos/foo/bar/baz` |
+| `/repos/*/issues` | `/repos/myrepo/issues` |
+| `/**` | Any path |
+
+!!! tip "Rule ordering"
+    Place specific rules before general ones. A catch-all `"/**"` deny rule should be last for its host.
+
+### Example: Read-Only API Access
+
+```yaml
+network:
+  rest_policies:
+    # Allow only GET requests to a third-party API
+    - host: "api.readonly-service.com"
+      method: "GET"
+      path: "/**"
+      action: "allow"
+    - host: "api.readonly-service.com"
+      method: "*"
+      path: "/**"
+      action: "deny"
+```
+
+See the [Gateway documentation](../security/gateway.md#l7-rest-policy-enforcement) for the full request flow and implementation details.

@@ -26,7 +26,7 @@ Security-first, self-hosted AI assistant for Linux. Production-grade agent platf
 
 ### :material-shield-lock: Security First
 
-Every capability is **disabled by default**. Network, filesystem, shell, and plugin access require explicit opt-in. Three-layer policy engine enforces rules on every request. ChaCha20-Poly1305 encrypted vault for secrets.
+Every capability is **disabled by default**. Network, filesystem, shell, and plugin access require explicit opt-in. Three-layer policy engine enforces rules on every request. ChaCha20-Poly1305 encrypted vault for secrets. **Container-per-session sandbox** for OS-level isolation, **Ed25519 agent identity** for signed audit trails, and **trust scoring** (0--1000) for provider and tool reliability tracking.
 
 </div>
 
@@ -50,7 +50,7 @@ WebSocket voice channel with dedicated **Raspberry Pi edge nodes**. Wake word de
 
 ### :material-robot: Agentic Runtime
 
-Multi-step tool loop with circuit breaker, checkpoint/recovery, cost tracking, and budget caps. Sub-agents, approval gates, learnings extraction, and self-tuning prompt patches.
+Multi-step tool loop with circuit breaker, checkpoint/recovery, cost tracking, and budget caps. Sub-agents, learnings extraction, and self-tuning prompt patches. **Interactive approval TUI** surfaces policy-denied operations for real-time operator approval with session-scoped "allow always" memory.
 
 </div>
 
@@ -66,7 +66,7 @@ Every action logged as structured JSONL — network requests, file access, shell
 
 ### :material-puzzle: Extensible
 
-Built-in tools, skills, plugins, and **MCP server** integration. Digest-pinned MCP connections for supply chain safety. Config presets, auto-migration, plan/rollback for operations.
+Built-in tools, skills, plugins, and **MCP server** integration. Digest-pinned MCP connections for supply chain safety. Config presets, auto-migration, plan/rollback for operations. **FAISS vector memory** for semantic search across conversation history. **SKILL.md dynamic discovery** for cross-agent skill portability.
 
 </div>
 
@@ -107,14 +107,16 @@ Or install manually:
 CLI / Discord / Webhook / Voice
          │
     AgentRuntime
-    ├── InputSanitizer + SecretsDetector
-    ├── PolicyEngine (network / filesystem / shell)
+    ├── InputSanitizer + SecretsDetector + PromptDriftDetector
+    ├── PolicyEngine (network / filesystem / shell / REST L7)
+    ├── AgentIdentity (Ed25519) + TrustScorer (0-1000)
     ├── CircuitBreaker + RateLimiter
     ├── ContextManager (token budget)
     ├── ProviderRegistry (Anthropic / OpenAI / Ollama)
-    ├── ToolRegistry + MCP Manager
-    ├── Memory + Learnings
-    ├── ApprovalGate
+    ├── ToolRegistry + MCP Manager + SKILL.md Discovery
+    ├── Memory + Learnings + Vector Memory (FAISS)
+    ├── ApprovalGate + InteractiveApproval TUI
+    ├── ContainerSandbox (Docker isolation)
     └── AuditLogger + OpenTelemetry
 ```
 

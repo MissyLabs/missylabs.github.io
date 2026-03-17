@@ -195,6 +195,131 @@ tool_client = create_client(category="tool")
 discord_client = create_client(category="discord")
 ```
 
+## L7 REST Policy Enforcement
+
+Beyond host-level allow/deny, Missy supports **L7 REST policies** that control which HTTP methods and URL paths are permitted on a per-host basis. This is useful when you want to allow read access to an API but block destructive operations.
+
+### How It Works
+
+REST policy rules are evaluated **after** the host passes network policy and **before** the request is dispatched. Rules are matched top-to-bottom; the first matching rule wins. If no rule matches, the request falls through to the standard network policy result.
+
+```mermaid
+flowchart TD
+    A[Request: GET api.github.com/repos/foo] --> B{Host allowed by network policy?}
+    B -->|No| C[DENY]
+    B -->|Yes| D{REST rules defined for host?}
+    D -->|No| E[ALLOW per network policy]
+    D -->|Yes| F{Match method + path?}
+    F -->|Rule: allow| E
+    F -->|Rule: deny| C
+    F -->|No match| E
+```
+
+### Configuration
+
+Add `rest_policies` under the `network` section in `~/.missy/config.yaml`:
+
+```yaml
+network:
+  rest_policies:
+    # Allow read access to GitHub repos
+    - host: "api.github.com"
+      method: "GET"
+      path: "/repos/**"
+      action: "allow"
+
+    # Allow creating issues
+    - host: "api.github.com"
+      method: "POST"
+      path: "/repos/*/issues"
+      action: "allow"
+
+    # Block all DELETE operations on GitHub
+    - host: "api.github.com"
+      method: "DELETE"
+      path: "/**"
+      action: "deny"
+
+    # Block write access to a read-only API
+    - host: "api.readonly-service.com"
+      method: "*"
+      path: "/**"
+      action: "deny"
+    - host: "api.readonly-service.com"
+      method: "GET"
+      path: "/**"
+      action: "allow"
+```
+
+### Rule Fields
+
+| Field | Type | Description |
+|---|---|---|
+| `host` | `str` | Hostname to match (exact, case-insensitive) |
+| `method` | `str` | HTTP method (`GET`, `POST`, etc.) or `*` for any |
+| `path` | `str` | URL path glob pattern (fnmatch syntax) |
+| `action` | `str` | `"allow"` or `"deny"` |
+
+!!! tip "Rule ordering matters"
+    Rules are evaluated top-to-bottom. Put more specific rules before general ones. A catch-all `"/**"` deny rule should come last for its host.
+
+### Path Matching
+
+Path patterns use Python's `fnmatch` module:
+
+| Pattern | Matches |
+|---|---|
+| `/repos/**` | `/repos/foo`, `/repos/foo/bar/baz` |
+| `/repos/*/issues` | `/repos/myrepo/issues` |
+| `/**` | Any path |
+| `/api/v2/*` | `/api/v2/users`, `/api/v2/items` |
+
+## Interactive Approval TUI
+
+When a network request or tool call is denied by the policy engine, the **Interactive Approval TUI** can surface the decision in the terminal for real-time operator approval.
+
+### How It Works
+
+```
+┌─── Policy Denied — Approval Required ───┐
+│                                          │
+│  Action: network_request                 │
+│  Detail: GET https://api.example.com/foo │
+│                                          │
+│  (y) allow once  (n) deny  (a) allow    │
+│                                          │
+└──────────────────────────────────────────┘
+Allow? [y/n/a]:
+```
+
+The operator can respond with:
+
+| Key | Meaning |
+|---|---|
+| `y` | Allow this one request |
+| `n` | Deny (default for any other input) |
+| `a` | Allow always -- remembered for the rest of the session |
+
+### Session-Scoped Memory
+
+When the operator presses `a`, the action+detail pair is hashed and stored in memory. Subsequent identical requests are auto-approved without prompting. This memory is cleared when the session ends.
+
+### Non-Interactive Fallback
+
+When stdin is not a TTY (e.g., running as a systemd service, in a cron job, or piped), the TUI automatically denies all requests without prompting. This ensures safe behavior in automated environments.
+
+```python
+from missy.agent.interactive_approval import InteractiveApproval
+
+approval = InteractiveApproval()
+
+# Check if a previous "allow always" decision exists
+remembered = approval.check_remembered("network_request", "GET https://example.com")
+
+# Prompt the user (or auto-deny if non-interactive)
+allowed = approval.prompt_user("network_request", "GET https://example.com")
+```
+
 ## Security Properties Summary
 
 | Property | Enforcement |
@@ -207,4 +332,6 @@ discord_client = create_client(category="discord")
 | Kwargs sanitization | Allowlist of safe kwargs only |
 | TLS enforcement | `verify=False` always stripped |
 | Connection pooling | 20 max connections, 10 keepalive |
+| L7 REST policy | Per-host method + path rules |
+| Interactive approval | TUI prompt for denied requests |
 | Audit trail | Every request logged |

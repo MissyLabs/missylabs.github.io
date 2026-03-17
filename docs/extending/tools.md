@@ -153,6 +153,88 @@ This generates:
 }
 ```
 
+## SKILL.md: Dynamic Skill Discovery
+
+Missy supports the **SKILL.md** open standard for cross-agent skill portability. Skills are markdown files with YAML frontmatter that define capabilities, required tools, and natural-language instructions.
+
+### SKILL.md Format
+
+Create a `SKILL.md` file in `~/.missy/skills/` (or any subdirectory):
+
+```markdown
+---
+name: web-search
+description: Search the web using DuckDuckGo
+version: 1.0.0
+author: MissyLabs
+tools: [web_fetch]
+---
+
+# Instructions
+
+When the user asks to search the web, use the `web_fetch` tool
+to query DuckDuckGo and summarize the results.
+```
+
+#### Frontmatter Fields
+
+| Field | Required | Description |
+|---|---|---|
+| `name` | Yes | Short identifier for the skill |
+| `description` | No | Human-readable description |
+| `version` | No | Semantic version string |
+| `author` | No | Author or organisation |
+| `tools` | No | List of tool names the skill requires |
+
+The body below the frontmatter contains natural-language instructions that are injected into the agent's context when the skill is activated.
+
+### Scanning for Skills
+
+Use `missy skills scan` to discover all SKILL.md files:
+
+```bash
+missy skills scan
+```
+
+Or programmatically:
+
+```python
+from missy.skills.discovery import SkillDiscovery
+
+discovery = SkillDiscovery()
+skills = discovery.scan_directory("~/.missy/skills")
+
+for skill in skills:
+    print(f"{skill.name} v{skill.version} — {skill.description}")
+```
+
+The scanner recursively searches the directory for any file named `SKILL.md` and parses its YAML frontmatter.
+
+### Searching Skills
+
+Skills can be searched by name and description:
+
+```python
+results = discovery.search("web", skills)
+# Returns skills with "web" in name (ranked first) or description
+```
+
+Name matches are ranked higher than description-only matches.
+
+### Skill Directory
+
+| Path | Description |
+|---|---|
+| `~/.missy/skills/` | Default directory for user-installed skills |
+| Any subdirectory | Skills can be nested in folders |
+
+!!! tip "Sharing skills"
+    SKILL.md files are plain markdown with no dependencies. Share them via git repos, gists, or copy them between machines. The format is designed for cross-agent portability.
+
+### Built-in Parser
+
+The SKILL.md parser uses a minimal YAML-subset parser that handles `key: value` pairs and inline lists (`[a, b, c]`). It does not require PyYAML to be installed.
+
 ## Audit trail
 
 Every tool execution emits an audit event with the tool name, session ID, and result (`allow`, `deny`, or `error`). View tool events with:

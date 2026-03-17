@@ -140,6 +140,10 @@ nav:
     - Gateway Enforcement: security/gateway.md
     - Input Sanitization: security/input-sanitization.md
     - Secrets Detection: security/secrets-detection.md
+    - Prompt Drift Detection: security/prompt-drift.md
+    - Agent Identity: security/agent-identity.md
+    - Trust Scoring: security/trust-scoring.md
+    - Container Sandbox: security/container-sandbox.md
     - Vault: security/vault.md
     - Threat Model: security/threat-model.md
 
