@@ -130,7 +130,7 @@ CLI / Discord / Webhook / Voice
 
 ---
 
-<div style="text-align: center; margin: 3rem 0 1rem;">
+<div style="text-align: center; margin: 3rem 0 1rem;" markdown>
 
 [:material-github: MissyLabs](https://github.com/MissyLabs){ .md-button }
 [:material-raspberry-pi: Missy Edge](https://github.com/MissyLabs/missy-edge){ .md-button }
