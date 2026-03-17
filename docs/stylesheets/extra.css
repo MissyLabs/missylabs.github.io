@@ -1,0 +1,136 @@
+/* MissyLabs custom theme overrides */
+
+:root {
+  --md-primary-fg-color: #7c4dff;
+  --md-primary-fg-color--light: #b388ff;
+  --md-primary-fg-color--dark: #651fff;
+  --md-accent-fg-color: #ffc400;
+}
+
+/* Hero section on landing page */
+.md-main .hero {
+  padding: 4rem 1rem;
+  text-align: center;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+  border-radius: 0 0 2rem 2rem;
+  margin: -1rem -0.8rem 2rem;
+}
+
+.hero h1 {
+  font-size: 3rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, #b388ff, #ffc400);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 1rem;
+}
+
+.hero .subtitle {
+  font-size: 1.3rem;
+  color: #a0a0b8;
+  max-width: 640px;
+  margin: 0 auto 2rem;
+  line-height: 1.6;
+}
+
+.hero .buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.hero .buttons a {
+  display: inline-block;
+  padding: 0.75rem 2rem;
+  border-radius: 2rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.hero .buttons a:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(124, 77, 255, 0.3);
+}
+
+.hero .buttons .primary {
+  background: linear-gradient(135deg, #7c4dff, #651fff);
+  color: white;
+}
+
+.hero .buttons .secondary {
+  border: 2px solid #7c4dff;
+  color: #b388ff;
+}
+
+/* Feature grid */
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+.feature-card {
+  padding: 1.5rem;
+  border-radius: 1rem;
+  border: 1px solid var(--md-default-fg-color--lightest);
+  transition: border-color 0.2s, transform 0.2s;
+}
+
+.feature-card:hover {
+  border-color: var(--md-accent-fg-color);
+  transform: translateY(-2px);
+}
+
+.feature-card h3 {
+  margin-top: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Custom "security" admonition */
+:root {
+  --md-admonition-icon--security: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/></svg>');
+}
+
+.md-typeset .admonition.security,
+.md-typeset details.security {
+  border-color: #7c4dff;
+}
+
+.md-typeset .security > .admonition-title,
+.md-typeset .security > summary {
+  background-color: rgba(124, 77, 255, 0.1);
+}
+
+.md-typeset .security > .admonition-title::before,
+.md-typeset .security > summary::before {
+  background-color: #7c4dff;
+  -webkit-mask-image: var(--md-admonition-icon--security);
+  mask-image: var(--md-admonition-icon--security);
+}
+
+/* Code block enhancements */
+.md-typeset pre > code {
+  border-radius: 0.5rem;
+}
+
+/* Slightly larger body text for readability */
+.md-typeset {
+  font-size: 0.82rem;
+  line-height: 1.7;
+}
+
+/* Architecture diagram styling */
+.md-typeset .mermaid {
+  margin: 1.5rem 0;
+}
+
+/* Tags styling */
+.md-typeset .md-tags {
+  margin-bottom: 1rem;
+}
