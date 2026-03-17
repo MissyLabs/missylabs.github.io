@@ -2,8 +2,7 @@
 hide:
   - navigation
   - toc
-tags:
-  - home
+  - tags
 ---
 
 <div class="hero" markdown>
