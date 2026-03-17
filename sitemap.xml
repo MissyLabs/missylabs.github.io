@@ -213,6 +213,14 @@
          <lastmod>2026-03-17</lastmod>
     </url>
     <url>
+         <loc>https://missylabs.github.io/security/agent-identity/</loc>
+         <lastmod>2026-03-17</lastmod>
+    </url>
+    <url>
+         <loc>https://missylabs.github.io/security/container-sandbox/</loc>
+         <lastmod>2026-03-17</lastmod>
+    </url>
+    <url>
          <loc>https://missylabs.github.io/security/gateway/</loc>
          <lastmod>2026-03-17</lastmod>
     </url>
@@ -225,11 +233,19 @@
          <lastmod>2026-03-17</lastmod>
     </url>
     <url>
+         <loc>https://missylabs.github.io/security/prompt-drift/</loc>
+         <lastmod>2026-03-17</lastmod>
+    </url>
+    <url>
          <loc>https://missylabs.github.io/security/secrets-detection/</loc>
          <lastmod>2026-03-17</lastmod>
     </url>
     <url>
          <loc>https://missylabs.github.io/security/threat-model/</loc>
+         <lastmod>2026-03-17</lastmod>
+    </url>
+    <url>
+         <loc>https://missylabs.github.io/security/trust-scoring/</loc>
          <lastmod>2026-03-17</lastmod>
     </url>
     <url>
