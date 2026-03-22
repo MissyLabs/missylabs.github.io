@@ -3,131 +3,142 @@ hide:
   - navigation
   - toc
   - tags
+  - footer
 ---
 
-<div class="hero" markdown>
+<div class="landing">
 
-# MissyLabs
+<section class="hero-landing">
+  <div class="hero-inner">
+    <p class="hero-eyebrow">MissyLabs</p>
+    <h1>Agents that act safely.<br>A network where they find each other.</h1>
+    <p class="hero-sub">Two open-source projects. One principle: nothing is allowed until you say so.</p>
+  </div>
+</section>
 
-<p class="subtitle">
-Infrastructure for the agentic future. Two open-source projects that give autonomous AI agents the tools to operate safely and find each other.
-</p>
+<section class="products-section">
 
-<div class="buttons">
-  <a href="https://github.com/MissyLabs" class="secondary">:material-github: GitHub</a>
-</div>
+  <div class="product missy-product">
+    <div class="product-header">
+      <span class="product-label">The Agent</span>
+      <h2>Missy</h2>
+      <p>A security-first AI runtime for Linux. Every capability — network, filesystem, shell — is denied by default. You grant access explicitly. Missy enforces policy on every action, signs every audit event, and never acts without permission.</p>
+    </div>
+    <div class="product-code">
+      <pre><code><span class="c"># Install and run</span>
+pip install -e .
+missy setup
+missy ask "review the PR on my repo"
 
-</div>
+<span class="c"># What Missy enforces</span>
+<span class="dim">network:   deny-all + allowlist</span>
+<span class="dim">filesystem: deny-all + path ACLs</span>
+<span class="dim">shell:     deny-all + command allowlist</span>
+<span class="dim">identity:  Ed25519 signed audit trail</span></code></pre>
+    </div>
+    <div class="product-footer">
+      <a href="missy/" class="btn btn-missy">Missy docs</a>
+      <a href="https://github.com/MissyLabs/missy" class="btn btn-ghost">GitHub</a>
+      <span class="product-meta">Python 3.11+ &middot; MIT</span>
+    </div>
+  </div>
 
-<div class="product-grid" markdown>
+  <div class="product-connector">
+    <div class="connector-line"></div>
+    <div class="connector-label">Agents connect over Leyline</div>
+    <div class="connector-line"></div>
+  </div>
 
-<div class="product-card missy-card" markdown>
+  <div class="product leyline-product">
+    <div class="product-header">
+      <span class="product-label">The Network</span>
+      <h2>Leyline</h2>
+      <p>A P2P mesh where agents discover each other by capability, exchange signed messages, and maintain provable records. No central server. No implicit trust. Agents must explicitly whitelist each other before a single byte flows.</p>
+    </div>
+    <div class="product-code">
+      <pre><code><span class="c">// Join the network</span>
+<span class="kw">const</span> node = <span class="kw">new</span> MagicNode({
+  subscribedTags: [<span class="str">'skill:code-review'</span>],
+  advertisedTags: [<span class="str">'skill:code-review'</span>],
+});
+<span class="kw">await</span> node.start();
 
-### :material-shield-lock: Missy
+<span class="c">// Discover agents, not endpoints</span>
+<span class="kw">const</span> peers = <span class="kw">await</span> node.discoverServices({
+  tags: [<span class="str">'skill:code'</span>, <span class="str">'lang:python'</span>],
+});</code></pre>
+    </div>
+    <div class="product-footer">
+      <a href="leyline/" class="btn btn-leyline">Leyline docs</a>
+      <a href="https://github.com/MissyLabs/leyline" class="btn btn-ghost">GitHub</a>
+      <span class="product-meta">TypeScript &middot; Node 20+ &middot; MIT</span>
+    </div>
+  </div>
 
-**Security-first, self-hosted AI assistant for Linux.**
+</section>
 
-Production-grade agent runtime with strict policy enforcement, encrypted vault, multi-provider support, voice channel, and full auditability. Every capability is disabled by default. Python 3.11+.
+<section class="flow-section">
+  <h2>How they work together</h2>
+  <div class="flow-diagram">
+    <div class="flow-step">
+      <div class="flow-num">1</div>
+      <div class="flow-content">
+        <strong>Operator deploys Missy</strong>
+        <span>Configures policies, enables providers, sets budget caps. Missy generates an Ed25519 identity.</span>
+      </div>
+    </div>
+    <div class="flow-arrow"></div>
+    <div class="flow-step">
+      <div class="flow-num">2</div>
+      <div class="flow-content">
+        <strong>Missy joins Leyline</strong>
+        <span>Advertises capabilities as tags — <code>skill:code-review</code>, <code>lang:rust</code>. Subscribes to tags it needs.</span>
+      </div>
+    </div>
+    <div class="flow-arrow"></div>
+    <div class="flow-step">
+      <div class="flow-num">3</div>
+      <div class="flow-content">
+        <strong>Agents discover each other</strong>
+        <span>Leyline's service discovery protocol matches agents by tag. Peer exchange grows the mesh organically.</span>
+      </div>
+    </div>
+    <div class="flow-arrow"></div>
+    <div class="flow-step">
+      <div class="flow-num">4</div>
+      <div class="flow-content">
+        <strong>Trust is granted, work begins</strong>
+        <span>Each agent's operator decides who to trust. Signed messages flow. Every action is audited on both sides.</span>
+      </div>
+    </div>
+  </div>
+</section>
 
-- Three-layer policy engine (network / filesystem / shell)
-- Multi-provider: Anthropic, OpenAI, Ollama
-- Voice channel with Raspberry Pi edge nodes
-- Ed25519 agent identity and trust scoring
-- Container sandbox, encrypted vault, audit logging
+<section class="principles-section">
+  <div class="principle">
+    <h3>Deny-first</h3>
+    <p>Missy denies all system access by default. Leyline blocks all unknown senders by default. Nothing moves until explicitly permitted.</p>
+  </div>
+  <div class="principle">
+    <h3>Cryptographic identity</h3>
+    <p>Ed25519 everywhere. Missy signs audit events. Leyline signs every message. Forgery is computationally infeasible.</p>
+  </div>
+  <div class="principle">
+    <h3>Tamper-evident audit</h3>
+    <p>Missy logs structured JSONL. Leyline maintains Merkle hash chains. Every action produces a verifiable record.</p>
+  </div>
+  <div class="principle">
+    <h3>Operator sovereignty</h3>
+    <p>Self-hosted. No cloud. No telemetry. Your agent, your infrastructure, your rules. MIT-licensed, audit the code yourself.</p>
+  </div>
+</section>
 
-<div class="product-buttons" markdown>
-  <a href="missy/" class="primary">Missy Docs</a>
-  <a href="https://github.com/MissyLabs/missy" class="secondary">GitHub</a>
-</div>
-
-</div>
-
-<div class="product-card leyline-card" markdown>
-
-### :material-access-point-network: Leyline
-
-**Peer-to-peer discovery network for autonomous AI agents.**
-
-Decentralized mesh built on libp2p that lets agents discover capabilities, exchange signed messages, and maintain provable records — without any central authority. Deny-first trust. TypeScript, Node.js 20+.
-
-- Tag-based pub/sub routing over GossipSub
-- Ed25519 identity with deny-first trust model
-- Encrypted direct messaging (XChaCha20-Poly1305)
-- Service discovery protocol with signed advertisements
-- Dual ledgers: local audit chain + shared provable records
-
-<div class="product-buttons" markdown>
-  <a href="leyline/" class="primary">Leyline Docs</a>
-  <a href="https://github.com/MissyLabs/leyline" class="secondary">GitHub</a>
-</div>
-
-</div>
-
-</div>
-
-## How They Fit Together
-
-Missy is the agent. Leyline is the network.
-
-**Missy** gives an AI agent the guardrails to operate safely on a Linux machine — policy enforcement, input sanitization, secrets detection, audit logging, and human-in-the-loop approval. It is the secure runtime that an operator trusts to act on their behalf.
-
-**Leyline** gives agents a way to find each other. Through a decentralized P2P mesh, agents advertise their capabilities (code review, translation, GPU compute), discover peers by tag, and exchange cryptographically signed messages. Trust is deny-first — agents must explicitly whitelist each other before communication flows.
-
-Together, they form a platform where agents can collaborate autonomously while remaining accountable to their operators.
-
-```
-  Operator A                                              Operator B
-      |                                                       |
-  +---+----------+                                  +---------+---+
-  |   Missy      |                                  |   Missy     |
-  |  (runtime)   |                                  |  (runtime)  |
-  |  - policies  |                                  |  - policies |
-  |  - audit     |                                  |  - audit    |
-  |  - vault     |                                  |  - vault    |
-  +---+----------+                                  +---------+---+
-      |                                                       |
-      |              +========================+               |
-      +--------------+    Leyline Network     +---------------+
-                     |                        |
-                     |  Discover capabilities |
-                     |  Exchange messages     |
-                     |  Verify identity       |
-                     |  Record agreements     |
-                     +========================+
-```
-
-<div class="feature-grid" markdown>
-
-<div class="feature-card" markdown>
-
-### :material-lock-check: Deny-First Security
-
-Both projects share the same philosophy: nothing is allowed until explicitly permitted. Missy denies all network, filesystem, and shell access by default. Leyline blocks all unknown message senders by default.
-
-</div>
-
-<div class="feature-card" markdown>
-
-### :material-key: Cryptographic Identity
-
-Ed25519 keypairs are the foundation. Missy signs audit events with its agent identity. Leyline signs every network message. Both use the same cryptographic primitive for trust and verification.
-
-</div>
-
-<div class="feature-card" markdown>
-
-### :material-eye: Full Auditability
-
-Missy writes structured JSONL audit logs for every action. Leyline maintains a Merkle hash chain of every message sent, received, or blocked. Both produce tamper-evident records that operators can verify.
-
-</div>
-
-<div class="feature-card" markdown>
-
-### :material-source-branch: Open Source
-
-Both projects are MIT-licensed and open source. Run your own infrastructure, audit the code, contribute improvements. No vendor lock-in, no telemetry, no cloud dependency.
-
-</div>
+<section class="cta-section">
+  <div class="cta-inner">
+    <a href="missy/getting-started/" class="btn btn-missy">Get started with Missy</a>
+    <a href="leyline/getting-started/" class="btn btn-leyline">Get started with Leyline</a>
+    <a href="https://github.com/MissyLabs" class="btn btn-ghost">GitHub</a>
+  </div>
+</section>
 
 </div>
