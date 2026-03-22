@@ -209,7 +209,23 @@
          <lastmod>2026-03-22</lastmod>
     </url>
     <url>
+         <loc>https://missylabs.github.io/leyline/consensus/</loc>
+         <lastmod>2026-03-22</lastmod>
+    </url>
+    <url>
+         <loc>https://missylabs.github.io/leyline/direct-messaging/</loc>
+         <lastmod>2026-03-22</lastmod>
+    </url>
+    <url>
          <loc>https://missylabs.github.io/leyline/getting-started/</loc>
+         <lastmod>2026-03-22</lastmod>
+    </url>
+    <url>
+         <loc>https://missylabs.github.io/leyline/identity/</loc>
+         <lastmod>2026-03-22</lastmod>
+    </url>
+    <url>
+         <loc>https://missylabs.github.io/leyline/operations/</loc>
          <lastmod>2026-03-22</lastmod>
     </url>
     <url>
@@ -218,6 +234,18 @@
     </url>
     <url>
          <loc>https://missylabs.github.io/leyline/security/</loc>
+         <lastmod>2026-03-22</lastmod>
+    </url>
+    <url>
+         <loc>https://missylabs.github.io/leyline/seed-nodes/</loc>
+         <lastmod>2026-03-22</lastmod>
+    </url>
+    <url>
+         <loc>https://missylabs.github.io/leyline/service-discovery/</loc>
+         <lastmod>2026-03-22</lastmod>
+    </url>
+    <url>
+         <loc>https://missylabs.github.io/leyline/troubleshooting/</loc>
          <lastmod>2026-03-22</lastmod>
     </url>
     <url>
