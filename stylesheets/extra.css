@@ -1,13 +1,386 @@
-/* MissyLabs custom theme overrides */
+/* ============================================================
+   MissyLabs — custom theme
+   ============================================================ */
 
 :root {
   --md-primary-fg-color: #7c4dff;
   --md-primary-fg-color--light: #b388ff;
   --md-primary-fg-color--dark: #651fff;
   --md-accent-fg-color: #ffc400;
+  --missy-color: #b388ff;
+  --missy-glow: rgba(179, 136, 255, 0.15);
+  --leyline-color: #00e5ff;
+  --leyline-glow: rgba(0, 229, 255, 0.12);
+  --surface: rgba(255, 255, 255, 0.03);
+  --surface-border: rgba(255, 255, 255, 0.06);
+  --text-dim: rgba(255, 255, 255, 0.45);
 }
 
-/* Hero section on landing pages */
+[data-md-color-scheme="default"] {
+  --surface: rgba(0, 0, 0, 0.02);
+  --surface-border: rgba(0, 0, 0, 0.08);
+  --text-dim: rgba(0, 0, 0, 0.45);
+}
+
+/* -------- Landing page layout -------- */
+
+.landing {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/* -------- Hero -------- */
+
+.hero-landing {
+  padding: 6rem 0 4rem;
+  text-align: center;
+}
+
+.hero-eyebrow {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.8rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--missy-color);
+  margin-bottom: 1.5rem;
+}
+
+.hero-landing h1 {
+  font-size: clamp(1.8rem, 5vw, 2.8rem);
+  font-weight: 700;
+  line-height: 1.25;
+  margin: 0 0 1.5rem;
+  letter-spacing: -0.02em;
+}
+
+.hero-sub {
+  font-size: 1.1rem;
+  color: var(--text-dim);
+  max-width: 520px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* -------- Products -------- */
+
+.products-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin: 2rem 0;
+}
+
+.product {
+  border: 1px solid var(--surface-border);
+  border-radius: 12px;
+  padding: 2.5rem 2rem;
+  background: var(--surface);
+  transition: border-color 0.3s;
+}
+
+.product:hover {
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+[data-md-color-scheme="default"] .product:hover {
+  border-color: rgba(0, 0, 0, 0.15);
+}
+
+.missy-product {
+  border-left: 3px solid var(--missy-color);
+}
+
+.leyline-product {
+  border-left: 3px solid var(--leyline-color);
+}
+
+.product-label {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.missy-product .product-label {
+  color: var(--missy-color);
+}
+
+.leyline-product .product-label {
+  color: var(--leyline-color);
+}
+
+.product h2 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin: 0 0 0.75rem;
+  letter-spacing: -0.01em;
+}
+
+.product-header p {
+  color: var(--text-dim);
+  font-size: 0.95rem;
+  line-height: 1.65;
+  margin: 0;
+  max-width: 600px;
+}
+
+.product-code {
+  margin: 1.5rem 0;
+}
+
+.product-code pre {
+  background: rgba(0, 0, 0, 0.25) !important;
+  border-radius: 8px;
+  padding: 1.25rem 1.5rem !important;
+  margin: 0;
+  font-size: 0.78rem;
+  line-height: 1.7;
+  overflow-x: auto;
+  border: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+[data-md-color-scheme="default"] .product-code pre {
+  background: rgba(0, 0, 0, 0.04) !important;
+  border-color: rgba(0, 0, 0, 0.06);
+}
+
+.product-code code {
+  font-family: "JetBrains Mono", monospace;
+  background: none !important;
+  padding: 0 !important;
+}
+
+.product-code .c { color: #6a6a8a; }
+.product-code .kw { color: var(--missy-color); }
+.product-code .str { color: #a5d6a7; }
+.product-code .dim { color: #6a6a8a; }
+
+[data-md-color-scheme="default"] .product-code .c { color: #999; }
+[data-md-color-scheme="default"] .product-code .kw { color: #7c4dff; }
+[data-md-color-scheme="default"] .product-code .str { color: #2e7d32; }
+[data-md-color-scheme="default"] .product-code .dim { color: #888; }
+
+.product-footer {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.product-meta {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.7rem;
+  color: var(--text-dim);
+  margin-left: auto;
+}
+
+/* -------- Connector between products -------- */
+
+.product-connector {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.5rem 0;
+}
+
+.connector-line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, var(--missy-color), var(--leyline-color));
+  opacity: 0.3;
+}
+
+.connector-label {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  color: var(--text-dim);
+  white-space: nowrap;
+  text-transform: lowercase;
+}
+
+/* -------- Buttons -------- */
+
+.btn {
+  display: inline-block;
+  padding: 0.5rem 1.4rem;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 0.82rem;
+  text-decoration: none;
+  transition: all 0.2s;
+  cursor: pointer;
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+}
+
+.btn-missy {
+  background: var(--missy-color);
+  color: #1a1a2e;
+}
+
+.btn-missy:hover {
+  box-shadow: 0 4px 16px var(--missy-glow);
+  color: #1a1a2e;
+}
+
+.btn-leyline {
+  background: var(--leyline-color);
+  color: #1a1a2e;
+}
+
+.btn-leyline:hover {
+  box-shadow: 0 4px 16px var(--leyline-glow);
+  color: #1a1a2e;
+}
+
+.btn-ghost {
+  border: 1px solid var(--surface-border);
+  color: var(--text-dim);
+}
+
+.btn-ghost:hover {
+  border-color: var(--missy-color);
+  color: var(--missy-color);
+}
+
+/* -------- Flow diagram -------- */
+
+.flow-section {
+  margin: 5rem 0 3rem;
+}
+
+.flow-section h2 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-bottom: 2rem;
+  text-align: center;
+  letter-spacing: -0.01em;
+}
+
+.flow-diagram {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.flow-step {
+  display: flex;
+  gap: 1.25rem;
+  align-items: flex-start;
+  padding: 1.25rem 0;
+}
+
+.flow-num {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.75rem;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 1px solid var(--surface-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--text-dim);
+}
+
+.flow-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.flow-content strong {
+  font-size: 0.9rem;
+}
+
+.flow-content span {
+  font-size: 0.82rem;
+  color: var(--text-dim);
+  line-height: 1.5;
+}
+
+.flow-content code {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.75rem;
+  padding: 0.1rem 0.35rem;
+  border-radius: 3px;
+  background: var(--surface);
+  border: 1px solid var(--surface-border);
+}
+
+.flow-arrow {
+  width: 1px;
+  height: 8px;
+  margin-left: 13px;
+  background: var(--surface-border);
+}
+
+/* -------- Principles -------- */
+
+.principles-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  margin: 4rem 0;
+  border: 1px solid var(--surface-border);
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--surface-border);
+}
+
+.principle {
+  padding: 1.75rem;
+  background: var(--md-default-bg-color);
+}
+
+.principle h3 {
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin: 0 0 0.5rem;
+  letter-spacing: -0.01em;
+}
+
+.principle p {
+  font-size: 0.78rem;
+  color: var(--text-dim);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* -------- CTA -------- */
+
+.cta-section {
+  padding: 3rem 0 5rem;
+}
+
+.cta-inner {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* -------- Responsive -------- */
+
+@media (max-width: 720px) {
+  .hero-landing { padding: 4rem 0 2.5rem; }
+  .product { padding: 1.5rem; }
+  .principles-section { grid-template-columns: 1fr; }
+  .product-meta { margin-left: 0; margin-top: 0.5rem; width: 100%; }
+}
+
+/* ============================================================
+   Inner pages (Missy, Leyline, docs)
+   ============================================================ */
+
+/* Hero section on product landing pages */
 .md-main .hero {
   padding: 4rem 1rem;
   text-align: center;
@@ -65,86 +438,7 @@
   color: #b388ff;
 }
 
-/* Product grid — two-column layout for the org landing page */
-.product-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
-  gap: 2rem;
-  margin: 2rem 0;
-}
-
-.product-card {
-  padding: 2rem;
-  border-radius: 1rem;
-  border: 2px solid var(--md-default-fg-color--lightest);
-  transition: border-color 0.2s, transform 0.2s;
-}
-
-.product-card:hover {
-  transform: translateY(-3px);
-}
-
-.product-card h3 {
-  margin-top: 0;
-  font-size: 1.5rem;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.product-card ul {
-  padding-left: 1.2rem;
-  margin: 1rem 0;
-}
-
-.product-card ul li {
-  margin-bottom: 0.3rem;
-}
-
-.missy-card:hover {
-  border-color: #7c4dff;
-}
-
-.leyline-card:hover {
-  border-color: #00e5ff;
-}
-
-.product-buttons {
-  display: flex;
-  gap: 0.75rem;
-  margin-top: 1.5rem;
-}
-
-.product-buttons a {
-  display: inline-block;
-  padding: 0.5rem 1.5rem;
-  border-radius: 2rem;
-  font-weight: 600;
-  text-decoration: none;
-  font-size: 0.9rem;
-  transition: transform 0.2s, box-shadow 0.2s;
-}
-
-.product-buttons a:hover {
-  transform: translateY(-2px);
-}
-
-.product-buttons .primary {
-  background: linear-gradient(135deg, #7c4dff, #651fff);
-  color: white;
-}
-
-.product-buttons .secondary {
-  border: 2px solid var(--md-default-fg-color--lightest);
-  color: var(--md-default-fg-color--light);
-}
-
-.product-buttons .secondary:hover {
-  border-color: #7c4dff;
-  color: #b388ff;
-}
-
-/* Feature grid */
+/* Feature grid for product pages */
 .feature-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -198,18 +492,18 @@
   border-radius: 0.5rem;
 }
 
-/* Slightly larger body text for readability */
+/* Body text */
 .md-typeset {
   font-size: 0.82rem;
   line-height: 1.7;
 }
 
-/* Architecture diagram styling */
+/* Mermaid diagrams */
 .md-typeset .mermaid {
   margin: 1.5rem 0;
 }
 
-/* Tags styling */
+/* Tags */
 .md-typeset .md-tags {
   margin-bottom: 1rem;
 }
