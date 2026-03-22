@@ -7,50 +7,110 @@ hide:
 
 <div class="hero" markdown>
 
-# Missy
+# MissyLabs
 
 <p class="subtitle">
-Security-first, self-hosted AI assistant for Linux. Production-grade agent platform with strict policy enforcement, encrypted vault, multi-provider support, voice channel, and full auditability.
+Infrastructure for the agentic future. Two open-source projects that give autonomous AI agents the tools to operate safely and find each other.
 </p>
 
 <div class="buttons">
-  <a href="getting-started/" class="primary">Get Started</a>
-  <a href="https://github.com/MissyLabs/missy" class="secondary">View on GitHub</a>
+  <a href="https://github.com/MissyLabs" class="secondary">:material-github: GitHub</a>
 </div>
 
 </div>
+
+<div class="product-grid" markdown>
+
+<div class="product-card missy-card" markdown>
+
+### :material-shield-lock: Missy
+
+**Security-first, self-hosted AI assistant for Linux.**
+
+Production-grade agent runtime with strict policy enforcement, encrypted vault, multi-provider support, voice channel, and full auditability. Every capability is disabled by default. Python 3.11+.
+
+- Three-layer policy engine (network / filesystem / shell)
+- Multi-provider: Anthropic, OpenAI, Ollama
+- Voice channel with Raspberry Pi edge nodes
+- Ed25519 agent identity and trust scoring
+- Container sandbox, encrypted vault, audit logging
+
+<div class="product-buttons" markdown>
+  <a href="missy/" class="primary">Missy Docs</a>
+  <a href="https://github.com/MissyLabs/missy" class="secondary">GitHub</a>
+</div>
+
+</div>
+
+<div class="product-card leyline-card" markdown>
+
+### :material-access-point-network: Leyline
+
+**Peer-to-peer discovery network for autonomous AI agents.**
+
+Decentralized mesh built on libp2p that lets agents discover capabilities, exchange signed messages, and maintain provable records — without any central authority. Deny-first trust. TypeScript, Node.js 20+.
+
+- Tag-based pub/sub routing over GossipSub
+- Ed25519 identity with deny-first trust model
+- Encrypted direct messaging (XChaCha20-Poly1305)
+- Service discovery protocol with signed advertisements
+- Dual ledgers: local audit chain + shared provable records
+
+<div class="product-buttons" markdown>
+  <a href="leyline/" class="primary">Leyline Docs</a>
+  <a href="https://github.com/MissyLabs/leyline" class="secondary">GitHub</a>
+</div>
+
+</div>
+
+</div>
+
+## How They Fit Together
+
+Missy is the agent. Leyline is the network.
+
+**Missy** gives an AI agent the guardrails to operate safely on a Linux machine — policy enforcement, input sanitization, secrets detection, audit logging, and human-in-the-loop approval. It is the secure runtime that an operator trusts to act on their behalf.
+
+**Leyline** gives agents a way to find each other. Through a decentralized P2P mesh, agents advertise their capabilities (code review, translation, GPU compute), discover peers by tag, and exchange cryptographically signed messages. Trust is deny-first — agents must explicitly whitelist each other before communication flows.
+
+Together, they form a platform where agents can collaborate autonomously while remaining accountable to their operators.
+
+```
+  Operator A                                              Operator B
+      |                                                       |
+  +---+----------+                                  +---------+---+
+  |   Missy      |                                  |   Missy     |
+  |  (runtime)   |                                  |  (runtime)  |
+  |  - policies  |                                  |  - policies |
+  |  - audit     |                                  |  - audit    |
+  |  - vault     |                                  |  - vault    |
+  +---+----------+                                  +---------+---+
+      |                                                       |
+      |              +========================+               |
+      +--------------+    Leyline Network     +---------------+
+                     |                        |
+                     |  Discover capabilities |
+                     |  Exchange messages     |
+                     |  Verify identity       |
+                     |  Record agreements     |
+                     +========================+
+```
 
 <div class="feature-grid" markdown>
 
 <div class="feature-card" markdown>
 
-### :material-shield-lock: Security First
+### :material-lock-check: Deny-First Security
 
-Every capability is **disabled by default**. Network, filesystem, shell, and plugin access require explicit opt-in. Three-layer policy engine enforces rules on every request. ChaCha20-Poly1305 encrypted vault for secrets. **Container-per-session sandbox** for OS-level isolation, **Ed25519 agent identity** for signed audit trails, and **trust scoring** (0--1000) for provider and tool reliability tracking.
-
-</div>
-
-<div class="feature-card" markdown>
-
-### :material-swap-horizontal: Multi-Provider
-
-Switch between **Anthropic**, **OpenAI**, and **Ollama** (local models) — even at runtime. API key rotation, model tiers (fast/primary/premium), and automatic fallback when a provider is down.
+Both projects share the same philosophy: nothing is allowed until explicitly permitted. Missy denies all network, filesystem, and shell access by default. Leyline blocks all unknown message senders by default.
 
 </div>
 
 <div class="feature-card" markdown>
 
-### :material-microphone: Voice Native
+### :material-key: Cryptographic Identity
 
-WebSocket voice channel with dedicated **Raspberry Pi edge nodes**. Wake word detection, local STT (faster-whisper), local TTS (Piper). Per-node policy modes with PBKDF2 device authentication.
-
-</div>
-
-<div class="feature-card" markdown>
-
-### :material-robot: Agentic Runtime
-
-Multi-step tool loop with circuit breaker, checkpoint/recovery, cost tracking, and budget caps. Sub-agents, learnings extraction, and self-tuning prompt patches. **AI Playbook** auto-captures successful tool patterns and promotes them to skills. **Sleep Mode** consolidates context when the token window fills. **Attention System** tracks urgency, focus, and topic continuity across turns. **Interactive approval TUI** surfaces policy-denied operations for real-time operator approval with session-scoped "allow always" memory.
+Ed25519 keypairs are the foundation. Missy signs audit events with its agent identity. Leyline signs every network message. Both use the same cryptographic primitive for trust and verification.
 
 </div>
 
@@ -58,85 +118,16 @@ Multi-step tool loop with circuit breaker, checkpoint/recovery, cost tracking, a
 
 ### :material-eye: Full Auditability
 
-Every action logged as structured JSONL — network requests, file access, shell commands, tool calls. OpenTelemetry export for production observability. No silent failures.
+Missy writes structured JSONL audit logs for every action. Leyline maintains a Merkle hash chain of every message sent, received, or blocked. Both produce tamper-evident records that operators can verify.
 
 </div>
 
 <div class="feature-card" markdown>
 
-### :material-puzzle: Extensible
+### :material-source-branch: Open Source
 
-Built-in tools, skills, plugins, and **MCP server** integration. Digest-pinned MCP connections for supply chain safety. Config presets, auto-migration, plan/rollback for operations. **FAISS vector memory** for semantic search across conversation history. **SKILL.md dynamic discovery** for cross-agent skill portability. **Async Message Bus** with topic wildcards and priority queuing for event-driven subsystem coordination.
-
-</div>
+Both projects are MIT-licensed and open source. Run your own infrastructure, audit the code, contribute improvements. No vendor lock-in, no telemetry, no cloud dependency.
 
 </div>
-
-## Quick Install
-
-```bash
-curl -fsSL https://raw.githubusercontent.com/MissyLabs/missy/master/install.sh | bash
-```
-
-Or install manually:
-
-=== "pip"
-
-    ```bash
-    git clone https://github.com/MissyLabs/missy.git
-    cd missy
-    pip install -e .
-    missy setup
-    ```
-
-=== "With voice support"
-
-    ```bash
-    pip install -e ".[voice]"
-    ```
-
-=== "With OpenTelemetry"
-
-    ```bash
-    pip install -e ".[otel]"
-    ```
-
-## Architecture
-
-```
-CLI / Discord / Webhook / Voice
-         │
-    AgentRuntime
-    ├── InputSanitizer + SecretsDetector + PromptDriftDetector
-    ├── PolicyEngine (network / filesystem / shell / REST L7)
-    ├── AgentIdentity (Ed25519) + TrustScorer (0-1000)
-    ├── CircuitBreaker + RateLimiter
-    ├── ContextManager (token budget) + MemoryConsolidator (sleep mode)
-    ├── AttentionSystem (alerting / orienting / sustained / selective / executive)
-    ├── ProviderRegistry (Anthropic / OpenAI / Ollama)
-    ├── ToolRegistry + MCP Manager + SKILL.md Discovery
-    ├── Memory + Learnings + Vector Memory (FAISS) + MemorySynthesizer
-    ├── Playbook (auto-capture → skill promotion)
-    ├── MessageBus (async events, topic wildcards, priority queue)
-    ├── ApprovalGate + InteractiveApproval TUI
-    ├── ContainerSandbox (Docker isolation)
-    └── AuditLogger + OpenTelemetry
-```
-
-## Channels
-
-| Channel | Description |
-|---------|-------------|
-| **CLI** | Interactive REPL and single-shot `missy ask` |
-| **Discord** | Full Gateway API with DM/guild policies, slash commands |
-| **Webhook** | HTTP ingress for automation pipelines |
-| **Voice** | WebSocket server + Raspberry Pi edge nodes with wake word |
-
----
-
-<div style="text-align: center; margin: 3rem 0 1rem;" markdown>
-
-[:material-github: MissyLabs](https://github.com/MissyLabs){ .md-button }
-[:material-raspberry-pi: Missy Edge](https://github.com/MissyLabs/missy-edge){ .md-button }
 
 </div>

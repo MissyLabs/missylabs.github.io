@@ -1,9 +1,9 @@
-site_name: Missy
+site_name: MissyLabs
 site_url: https://missylabs.github.io
-site_description: "Security-first, self-hosted AI assistant for Linux"
+site_description: "Infrastructure for the agentic future — Missy (secure agent runtime) and Leyline (P2P discovery network)"
 site_author: MissyLabs
-repo_url: https://github.com/MissyLabs/missy
-repo_name: MissyLabs/missy
+repo_url: https://github.com/MissyLabs
+repo_name: MissyLabs
 edit_uri: https://github.com/MissyLabs/missylabs.github.io/edit/main/docs/
 
 theme:
@@ -118,90 +118,102 @@ copyright: Copyright &copy; 2025-2026 MissyLabs
 nav:
   - Home: index.md
 
-  - Getting Started:
-    - getting-started/index.md
-    - Installation: getting-started/installation.md
-    - Quick Start: getting-started/quickstart.md
-    - Setup Wizard: getting-started/setup-wizard.md
-    - Your First Conversation: getting-started/first-conversation.md
+  - Missy:
+    - missy/index.md
 
-  - Configuration:
-    - configuration/index.md
-    - Config Reference: configuration/reference.md
-    - Network Policy: configuration/network.md
-    - Filesystem Policy: configuration/filesystem.md
-    - Shell Policy: configuration/shell.md
-    - Providers: configuration/providers.md
-    - Presets: configuration/presets.md
+    - Getting Started:
+      - getting-started/index.md
+      - Installation: getting-started/installation.md
+      - Quick Start: getting-started/quickstart.md
+      - Setup Wizard: getting-started/setup-wizard.md
+      - Your First Conversation: getting-started/first-conversation.md
 
-  - Security:
-    - security/index.md
-    - Policy Engine: security/policy-engine.md
-    - Gateway Enforcement: security/gateway.md
-    - Input Sanitization: security/input-sanitization.md
-    - Secrets Detection: security/secrets-detection.md
-    - Prompt Drift Detection: security/prompt-drift.md
-    - Agent Identity: security/agent-identity.md
-    - Trust Scoring: security/trust-scoring.md
-    - Container Sandbox: security/container-sandbox.md
-    - Vault: security/vault.md
-    - Threat Model: security/threat-model.md
+    - Configuration:
+      - configuration/index.md
+      - Config Reference: configuration/reference.md
+      - Network Policy: configuration/network.md
+      - Filesystem Policy: configuration/filesystem.md
+      - Shell Policy: configuration/shell.md
+      - Providers: configuration/providers.md
+      - Presets: configuration/presets.md
 
-  - Architecture:
-    - architecture/index.md
-    - Agent Runtime: architecture/agent-runtime.md
-    - Context Management: architecture/context-management.md
-    - Circuit Breaker: architecture/circuit-breaker.md
-    - Progress Reporting: architecture/progress-reporting.md
-    - AI Playbook: architecture/playbook.md
-    - Sleep Mode: architecture/sleep-mode.md
-    - Memory Synthesizer: architecture/memory-synthesizer.md
-    - Attention System: architecture/attention.md
-    - Message Bus: architecture/message-bus.md
+    - Security:
+      - security/index.md
+      - Policy Engine: security/policy-engine.md
+      - Gateway Enforcement: security/gateway.md
+      - Input Sanitization: security/input-sanitization.md
+      - Secrets Detection: security/secrets-detection.md
+      - Prompt Drift Detection: security/prompt-drift.md
+      - Agent Identity: security/agent-identity.md
+      - Trust Scoring: security/trust-scoring.md
+      - Container Sandbox: security/container-sandbox.md
+      - Vault: security/vault.md
+      - Threat Model: security/threat-model.md
 
-  - CLI Reference:
-    - cli/index.md
-    - Core Commands: cli/core.md
-    - Schedule Commands: cli/schedule.md
-    - Audit Commands: cli/audit.md
-    - Vault Commands: cli/vault.md
-    - Config Commands: cli/config.md
-    - MCP Commands: cli/mcp.md
+    - Architecture:
+      - architecture/index.md
+      - Agent Runtime: architecture/agent-runtime.md
+      - Context Management: architecture/context-management.md
+      - Circuit Breaker: architecture/circuit-breaker.md
+      - Progress Reporting: architecture/progress-reporting.md
+      - AI Playbook: architecture/playbook.md
+      - Sleep Mode: architecture/sleep-mode.md
+      - Memory Synthesizer: architecture/memory-synthesizer.md
+      - Attention System: architecture/attention.md
+      - Message Bus: architecture/message-bus.md
 
-  - Channels:
-    - channels/index.md
-    - CLI Channel: channels/cli.md
-    - Discord:
-      - Setup: channels/discord/setup.md
-      - Access Control: channels/discord/access-control.md
-    - Voice:
-      - Server Setup: channels/voice/server.md
-      - Protocol: channels/voice/protocol.md
-      - Device Management: channels/voice/devices.md
+    - CLI Reference:
+      - cli/index.md
+      - Core Commands: cli/core.md
+      - Schedule Commands: cli/schedule.md
+      - Audit Commands: cli/audit.md
+      - Vault Commands: cli/vault.md
+      - Config Commands: cli/config.md
+      - MCP Commands: cli/mcp.md
 
-  - Providers:
-    - providers/index.md
-    - Anthropic: providers/anthropic.md
-    - OpenAI: providers/openai.md
-    - Ollama: providers/ollama.md
-    - Runtime Switching: providers/runtime-switching.md
+    - Channels:
+      - channels/index.md
+      - CLI Channel: channels/cli.md
+      - Discord:
+        - Setup: channels/discord/setup.md
+        - Access Control: channels/discord/access-control.md
+      - Voice:
+        - Server Setup: channels/voice/server.md
+        - Protocol: channels/voice/protocol.md
+        - Device Management: channels/voice/devices.md
 
-  - Extending:
-    - extending/index.md
-    - Tools: extending/tools.md
-    - Plugins: extending/plugins.md
-    - MCP Servers: extending/mcp.md
+    - Providers:
+      - providers/index.md
+      - Anthropic: providers/anthropic.md
+      - OpenAI: providers/openai.md
+      - Ollama: providers/ollama.md
+      - Runtime Switching: providers/runtime-switching.md
 
-  - Missy Edge:
-    - edge/index.md
-    - Hardware: edge/hardware.md
-    - Pi Setup: edge/pi-setup.md
-    - Pairing: edge/pairing.md
-    - Configuration: edge/configuration.md
-    - Wake Word: edge/wake-word.md
+    - Extending:
+      - extending/index.md
+      - Tools: extending/tools.md
+      - Plugins: extending/plugins.md
+      - MCP Servers: extending/mcp.md
 
-  - Operations:
-    - operations/index.md
-    - Backup & Recovery: operations/backup.md
-    - Observability: operations/observability.md
-    - Troubleshooting: operations/troubleshooting.md
+    - Missy Edge:
+      - edge/index.md
+      - Hardware: edge/hardware.md
+      - Pi Setup: edge/pi-setup.md
+      - Pairing: edge/pairing.md
+      - Configuration: edge/configuration.md
+      - Wake Word: edge/wake-word.md
+
+    - Operations:
+      - operations/index.md
+      - Backup & Recovery: operations/backup.md
+      - Observability: operations/observability.md
+      - Troubleshooting: operations/troubleshooting.md
+
+  - Leyline:
+    - leyline/index.md
+    - Getting Started: leyline/getting-started.md
+    - Architecture: leyline/architecture.md
+    - Security: leyline/security.md
+    - Protocols: leyline/protocols.md
+    - Configuration: leyline/configuration.md
+    - API Reference: leyline/api-reference.md
