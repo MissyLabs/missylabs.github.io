@@ -2,274 +2,306 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://missylabs.github.io/</loc>
-         <lastmod>2026-03-17</lastmod>
+         <lastmod>2026-03-22</lastmod>
     </url>
     <url>
          <loc>https://missylabs.github.io/tags/</loc>
-         <lastmod>2026-03-17</lastmod>
+         <lastmod>2026-03-22</lastmod>
     </url>
     <url>
          <loc>https://missylabs.github.io/architecture/</loc>
-         <lastmod>2026-03-17</lastmod>
+         <lastmod>2026-03-22</lastmod>
     </url>
     <url>
          <loc>https://missylabs.github.io/architecture/agent-runtime/</loc>
-         <lastmod>2026-03-17</lastmod>
+         <lastmod>2026-03-22</lastmod>
     </url>
     <url>
          <loc>https://missylabs.github.io/architecture/attention/</loc>
-         <lastmod>2026-03-17</lastmod>
+         <lastmod>2026-03-22</lastmod>
     </url>
     <url>
          <loc>https://missylabs.github.io/architecture/circuit-breaker/</loc>
-         <lastmod>2026-03-17</lastmod>
+         <lastmod>2026-03-22</lastmod>
     </url>
     <url>
          <loc>https://missylabs.github.io/architecture/context-management/</loc>
-         <lastmod>2026-03-17</lastmod>
+         <lastmod>2026-03-22</lastmod>
     </url>
     <url>
          <loc>https://missylabs.github.io/architecture/memory-synthesizer/</loc>
-         <lastmod>2026-03-17</lastmod>
+         <lastmod>2026-03-22</lastmod>
     </url>
     <url>
          <loc>https://missylabs.github.io/architecture/message-bus/</loc>
-         <lastmod>2026-03-17</lastmod>
+         <lastmod>2026-03-22</lastmod>
     </url>
     <url>
          <loc>https://missylabs.github.io/architecture/playbook/</loc>
-         <lastmod>2026-03-17</lastmod>
+         <lastmod>2026-03-22</lastmod>
     </url>
     <url>
          <loc>https://missylabs.github.io/architecture/progress-reporting/</loc>
-         <lastmod>2026-03-17</lastmod>
+         <lastmod>2026-03-22</lastmod>
     </url>
     <url>
          <loc>https://missylabs.github.io/architecture/sleep-mode/</loc>
-         <lastmod>2026-03-17</lastmod>
+         <lastmod>2026-03-22</lastmod>
     </url>
     <url>
          <loc>https://missylabs.github.io/channels/</loc>
-         <lastmod>2026-03-17</lastmod>
+         <lastmod>2026-03-22</lastmod>
     </url>
     <url>
          <loc>https://missylabs.github.io/channels/cli/</loc>
-         <lastmod>2026-03-17</lastmod>
+         <lastmod>2026-03-22</lastmod>
     </url>
     <url>
          <loc>https://missylabs.github.io/channels/discord/access-control/</loc>
-         <lastmod>2026-03-17</lastmod>
+         <lastmod>2026-03-22</lastmod>
     </url>
     <url>
          <loc>https://missylabs.github.io/channels/discord/setup/</loc>
-         <lastmod>2026-03-17</lastmod>
+         <lastmod>2026-03-22</lastmod>
     </url>
     <url>
          <loc>https://missylabs.github.io/channels/voice/devices/</loc>
-         <lastmod>2026-03-17</lastmod>
+         <lastmod>2026-03-22</lastmod>
     </url>
     <url>
          <loc>https://missylabs.github.io/channels/voice/protocol/</loc>
-         <lastmod>2026-03-17</lastmod>
+         <lastmod>2026-03-22</lastmod>
     </url>
     <url>
          <loc>https://missylabs.github.io/channels/voice/server/</loc>
-         <lastmod>2026-03-17</lastmod>
+         <lastmod>2026-03-22</lastmod>
     </url>
     <url>
          <loc>https://missylabs.github.io/cli/</loc>
-         <lastmod>2026-03-17</lastmod>
+         <lastmod>2026-03-22</lastmod>
     </url>
     <url>
          <loc>https://missylabs.github.io/cli/audit/</loc>
-         <lastmod>2026-03-17</lastmod>
+         <lastmod>2026-03-22</lastmod>
     </url>
     <url>
          <loc>https://missylabs.github.io/cli/config/</loc>
-         <lastmod>2026-03-17</lastmod>
+         <lastmod>2026-03-22</lastmod>
     </url>
     <url>
          <loc>https://missylabs.github.io/cli/core/</loc>
-         <lastmod>2026-03-17</lastmod>
+         <lastmod>2026-03-22</lastmod>
     </url>
     <url>
          <loc>https://missylabs.github.io/cli/mcp/</loc>
-         <lastmod>2026-03-17</lastmod>
+         <lastmod>2026-03-22</lastmod>
     </url>
     <url>
          <loc>https://missylabs.github.io/cli/schedule/</loc>
-         <lastmod>2026-03-17</lastmod>
+         <lastmod>2026-03-22</lastmod>
     </url>
     <url>
          <loc>https://missylabs.github.io/cli/vault/</loc>
-         <lastmod>2026-03-17</lastmod>
+         <lastmod>2026-03-22</lastmod>
     </url>
     <url>
          <loc>https://missylabs.github.io/configuration/</loc>
-         <lastmod>2026-03-17</lastmod>
+         <lastmod>2026-03-22</lastmod>
     </url>
     <url>
          <loc>https://missylabs.github.io/configuration/filesystem/</loc>
-         <lastmod>2026-03-17</lastmod>
+         <lastmod>2026-03-22</lastmod>
     </url>
     <url>
          <loc>https://missylabs.github.io/configuration/network/</loc>
-         <lastmod>2026-03-17</lastmod>
+         <lastmod>2026-03-22</lastmod>
     </url>
     <url>
          <loc>https://missylabs.github.io/configuration/presets/</loc>
-         <lastmod>2026-03-17</lastmod>
+         <lastmod>2026-03-22</lastmod>
     </url>
     <url>
          <loc>https://missylabs.github.io/configuration/providers/</loc>
-         <lastmod>2026-03-17</lastmod>
+         <lastmod>2026-03-22</lastmod>
     </url>
     <url>
          <loc>https://missylabs.github.io/configuration/reference/</loc>
-         <lastmod>2026-03-17</lastmod>
+         <lastmod>2026-03-22</lastmod>
     </url>
     <url>
          <loc>https://missylabs.github.io/configuration/shell/</loc>
-         <lastmod>2026-03-17</lastmod>
+         <lastmod>2026-03-22</lastmod>
     </url>
     <url>
          <loc>https://missylabs.github.io/edge/</loc>
-         <lastmod>2026-03-17</lastmod>
+         <lastmod>2026-03-22</lastmod>
     </url>
     <url>
          <loc>https://missylabs.github.io/edge/configuration/</loc>
-         <lastmod>2026-03-17</lastmod>
+         <lastmod>2026-03-22</lastmod>
     </url>
     <url>
          <loc>https://missylabs.github.io/edge/hardware/</loc>
-         <lastmod>2026-03-17</lastmod>
+         <lastmod>2026-03-22</lastmod>
     </url>
     <url>
          <loc>https://missylabs.github.io/edge/pairing/</loc>
-         <lastmod>2026-03-17</lastmod>
+         <lastmod>2026-03-22</lastmod>
     </url>
     <url>
          <loc>https://missylabs.github.io/edge/pi-setup/</loc>
-         <lastmod>2026-03-17</lastmod>
+         <lastmod>2026-03-22</lastmod>
     </url>
     <url>
          <loc>https://missylabs.github.io/edge/wake-word/</loc>
-         <lastmod>2026-03-17</lastmod>
+         <lastmod>2026-03-22</lastmod>
     </url>
     <url>
          <loc>https://missylabs.github.io/extending/</loc>
-         <lastmod>2026-03-17</lastmod>
+         <lastmod>2026-03-22</lastmod>
     </url>
     <url>
          <loc>https://missylabs.github.io/extending/mcp/</loc>
-         <lastmod>2026-03-17</lastmod>
+         <lastmod>2026-03-22</lastmod>
     </url>
     <url>
          <loc>https://missylabs.github.io/extending/plugins/</loc>
-         <lastmod>2026-03-17</lastmod>
+         <lastmod>2026-03-22</lastmod>
     </url>
     <url>
          <loc>https://missylabs.github.io/extending/tools/</loc>
-         <lastmod>2026-03-17</lastmod>
+         <lastmod>2026-03-22</lastmod>
     </url>
     <url>
          <loc>https://missylabs.github.io/getting-started/</loc>
-         <lastmod>2026-03-17</lastmod>
+         <lastmod>2026-03-22</lastmod>
     </url>
     <url>
          <loc>https://missylabs.github.io/getting-started/first-conversation/</loc>
-         <lastmod>2026-03-17</lastmod>
+         <lastmod>2026-03-22</lastmod>
     </url>
     <url>
          <loc>https://missylabs.github.io/getting-started/installation/</loc>
-         <lastmod>2026-03-17</lastmod>
+         <lastmod>2026-03-22</lastmod>
     </url>
     <url>
          <loc>https://missylabs.github.io/getting-started/quickstart/</loc>
-         <lastmod>2026-03-17</lastmod>
+         <lastmod>2026-03-22</lastmod>
     </url>
     <url>
          <loc>https://missylabs.github.io/getting-started/setup-wizard/</loc>
-         <lastmod>2026-03-17</lastmod>
+         <lastmod>2026-03-22</lastmod>
+    </url>
+    <url>
+         <loc>https://missylabs.github.io/leyline/</loc>
+         <lastmod>2026-03-22</lastmod>
+    </url>
+    <url>
+         <loc>https://missylabs.github.io/leyline/api-reference/</loc>
+         <lastmod>2026-03-22</lastmod>
+    </url>
+    <url>
+         <loc>https://missylabs.github.io/leyline/architecture/</loc>
+         <lastmod>2026-03-22</lastmod>
+    </url>
+    <url>
+         <loc>https://missylabs.github.io/leyline/configuration/</loc>
+         <lastmod>2026-03-22</lastmod>
+    </url>
+    <url>
+         <loc>https://missylabs.github.io/leyline/getting-started/</loc>
+         <lastmod>2026-03-22</lastmod>
+    </url>
+    <url>
+         <loc>https://missylabs.github.io/leyline/protocols/</loc>
+         <lastmod>2026-03-22</lastmod>
+    </url>
+    <url>
+         <loc>https://missylabs.github.io/leyline/security/</loc>
+         <lastmod>2026-03-22</lastmod>
+    </url>
+    <url>
+         <loc>https://missylabs.github.io/missy/</loc>
+         <lastmod>2026-03-22</lastmod>
     </url>
     <url>
          <loc>https://missylabs.github.io/operations/</loc>
-         <lastmod>2026-03-17</lastmod>
+         <lastmod>2026-03-22</lastmod>
     </url>
     <url>
          <loc>https://missylabs.github.io/operations/backup/</loc>
-         <lastmod>2026-03-17</lastmod>
+         <lastmod>2026-03-22</lastmod>
     </url>
     <url>
          <loc>https://missylabs.github.io/operations/observability/</loc>
-         <lastmod>2026-03-17</lastmod>
+         <lastmod>2026-03-22</lastmod>
     </url>
     <url>
          <loc>https://missylabs.github.io/operations/troubleshooting/</loc>
-         <lastmod>2026-03-17</lastmod>
+         <lastmod>2026-03-22</lastmod>
     </url>
     <url>
          <loc>https://missylabs.github.io/providers/</loc>
-         <lastmod>2026-03-17</lastmod>
+         <lastmod>2026-03-22</lastmod>
     </url>
     <url>
          <loc>https://missylabs.github.io/providers/anthropic/</loc>
-         <lastmod>2026-03-17</lastmod>
+         <lastmod>2026-03-22</lastmod>
     </url>
     <url>
          <loc>https://missylabs.github.io/providers/ollama/</loc>
-         <lastmod>2026-03-17</lastmod>
+         <lastmod>2026-03-22</lastmod>
     </url>
     <url>
          <loc>https://missylabs.github.io/providers/openai/</loc>
-         <lastmod>2026-03-17</lastmod>
+         <lastmod>2026-03-22</lastmod>
     </url>
     <url>
          <loc>https://missylabs.github.io/providers/runtime-switching/</loc>
-         <lastmod>2026-03-17</lastmod>
+         <lastmod>2026-03-22</lastmod>
     </url>
     <url>
          <loc>https://missylabs.github.io/security/</loc>
-         <lastmod>2026-03-17</lastmod>
+         <lastmod>2026-03-22</lastmod>
     </url>
     <url>
          <loc>https://missylabs.github.io/security/agent-identity/</loc>
-         <lastmod>2026-03-17</lastmod>
+         <lastmod>2026-03-22</lastmod>
     </url>
     <url>
          <loc>https://missylabs.github.io/security/container-sandbox/</loc>
-         <lastmod>2026-03-17</lastmod>
+         <lastmod>2026-03-22</lastmod>
     </url>
     <url>
          <loc>https://missylabs.github.io/security/gateway/</loc>
-         <lastmod>2026-03-17</lastmod>
+         <lastmod>2026-03-22</lastmod>
     </url>
     <url>
          <loc>https://missylabs.github.io/security/input-sanitization/</loc>
-         <lastmod>2026-03-17</lastmod>
+         <lastmod>2026-03-22</lastmod>
     </url>
     <url>
          <loc>https://missylabs.github.io/security/policy-engine/</loc>
-         <lastmod>2026-03-17</lastmod>
+         <lastmod>2026-03-22</lastmod>
     </url>
     <url>
          <loc>https://missylabs.github.io/security/prompt-drift/</loc>
-         <lastmod>2026-03-17</lastmod>
+         <lastmod>2026-03-22</lastmod>
     </url>
     <url>
          <loc>https://missylabs.github.io/security/secrets-detection/</loc>
-         <lastmod>2026-03-17</lastmod>
+         <lastmod>2026-03-22</lastmod>
     </url>
     <url>
          <loc>https://missylabs.github.io/security/threat-model/</loc>
-         <lastmod>2026-03-17</lastmod>
+         <lastmod>2026-03-22</lastmod>
     </url>
     <url>
          <loc>https://missylabs.github.io/security/trust-scoring/</loc>
-         <lastmod>2026-03-17</lastmod>
+         <lastmod>2026-03-22</lastmod>
     </url>
     <url>
          <loc>https://missylabs.github.io/security/vault/</loc>
-         <lastmod>2026-03-17</lastmod>
+         <lastmod>2026-03-22</lastmod>
     </url>
 </urlset>
