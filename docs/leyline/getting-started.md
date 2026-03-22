@@ -15,12 +15,6 @@ node --version
 
 ## Installation
 
-=== "npm (library)"
-
-    ```bash
-    npm install magic-network
-    ```
-
 === "From source"
 
     ```bash

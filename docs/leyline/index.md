@@ -73,12 +73,6 @@ The `/leyline/discovery/1.0.0` protocol enables structured capability queries. A
 
 ## Quick Install
 
-=== "npm (library)"
-
-    ```bash
-    npm install magic-network
-    ```
-
 === "From source"
 
     ```bash
