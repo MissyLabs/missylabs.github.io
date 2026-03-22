@@ -214,6 +214,13 @@ nav:
     - Getting Started: leyline/getting-started.md
     - Architecture: leyline/architecture.md
     - Security: leyline/security.md
+    - Identity: leyline/identity.md
+    - Service Discovery: leyline/service-discovery.md
+    - Direct Messaging: leyline/direct-messaging.md
+    - Consensus: leyline/consensus.md
+    - Seed Nodes: leyline/seed-nodes.md
     - Protocols: leyline/protocols.md
     - Configuration: leyline/configuration.md
     - API Reference: leyline/api-reference.md
+    - Operations: leyline/operations.md
+    - Troubleshooting: leyline/troubleshooting.md
