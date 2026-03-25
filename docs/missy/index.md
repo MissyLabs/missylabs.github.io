@@ -100,10 +100,23 @@ Or install manually:
     pip install -e ".[otel]"
     ```
 
+=== "With vision"
+
+    ```bash
+    pip install -e ".[vision]"
+    ```
+
+=== "With desktop automation"
+
+    ```bash
+    pip install -e ".[desktop]"
+    playwright install firefox
+    ```
+
 ## Architecture
 
 ```
-CLI / Discord / Webhook / Voice
+CLI / Discord / Webhook / Voice / Screencast / API
          │
     AgentRuntime
     ├── InputSanitizer + SecretsDetector + PromptDriftDetector
@@ -114,11 +127,15 @@ CLI / Discord / Webhook / Voice
     ├── AttentionSystem (alerting / orienting / sustained / selective / executive)
     ├── ProviderRegistry (Anthropic / OpenAI / Ollama)
     ├── ToolRegistry + MCP Manager + SKILL.md Discovery
-    ├── Memory + Learnings + Vector Memory (FAISS) + MemorySynthesizer
+    ├── Memory + Learnings + Vector Memory (FAISS) + Graph Memory
+    ├── MemorySynthesizer + CondenserPipeline + SleeptimeWorker
     ├── Playbook (auto-capture → skill promotion)
     ├── MessageBus (async events, topic wildcards, priority queue)
     ├── ApprovalGate + InteractiveApproval TUI
-    ├── ContainerSandbox (Docker isolation)
+    ├── ContainerSandbox (Docker) + LandlockPolicy (kernel LSM)
+    ├── Checkpoint/Recovery + CostTracker + FailureTracker
+    ├── PersonaManager + BehaviorLayer + HatchingManager
+    ├── CodeEvolutionManager + StructuredOutput
     └── AuditLogger + OpenTelemetry
 ```
 
@@ -130,3 +147,5 @@ CLI / Discord / Webhook / Voice
 | **Discord** | Full Gateway API with DM/guild policies, slash commands |
 | **Webhook** | HTTP ingress for automation pipelines |
 | **Voice** | WebSocket server + Raspberry Pi edge nodes with wake word |
+| **Screencast** | Browser-based screen capture with token auth |
+| **REST API** | Agent-as-a-Service with API key auth and rate limiting |

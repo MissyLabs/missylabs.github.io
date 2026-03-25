@@ -11,6 +11,8 @@ graph TB
         Discord[DiscordChannel]
         Webhook[WebhookChannel]
         Voice[VoiceChannel]
+        Screencast[ScreencastChannel]
+        API[ApiServer]
     end
 
     subgraph Core["Agent Core"]
@@ -30,6 +32,8 @@ graph TB
         Identity[AgentIdentity]
         Trust[TrustScorer]
         Container[ContainerSandbox]
+        Landlock[LandlockPolicy]
+        Scanner[SecurityScanner]
         IApproval[InteractiveApproval]
     end
 
@@ -51,14 +55,17 @@ graph TB
     subgraph Intelligence["Intelligence"]
         Playbook[Playbook]
         Consolidator[MemoryConsolidator]
+        Condensers[CondenserPipeline]
         Attention[AttentionSystem]
         Synthesizer[MemorySynthesizer]
+        Sleeptime[SleeptimeWorker]
         Bus[MessageBus]
     end
 
     subgraph Persistence
         Memory[SQLiteMemoryStore]
         VectorMem[VectorMemoryStore FAISS]
+        GraphMem[GraphMemoryStore]
         Audit[AuditLogger]
         Learnings[Learnings]
         Checkpoint[CheckpointManager]
@@ -68,6 +75,8 @@ graph TB
     Discord --> Runtime
     Webhook --> Runtime
     Voice --> Runtime
+    Screencast --> Runtime
+    API --> Runtime
 
     Runtime --> Sanitizer
     Runtime --> Context
@@ -97,8 +106,10 @@ graph TB
 
     Runtime --> Playbook
     Runtime --> Consolidator
+    Consolidator --> Condensers
     Runtime --> Attention
     Runtime --> Synthesizer
+    Runtime --> Sleeptime
     Synthesizer --> Learnings
     Synthesizer --> Playbook
     Synthesizer --> Memory
@@ -108,6 +119,7 @@ graph TB
 
     Runtime --> Memory
     Runtime --> VectorMem
+    Runtime --> GraphMem
     Runtime --> Audit
     Runtime --> Learnings
     Runtime --> Checkpoint
@@ -125,6 +137,8 @@ Channels are the communication interfaces through which users interact with Miss
 | `DiscordChannel` | WebSocket + REST | Chat bot with slash commands |
 | `WebhookChannel` | HTTP POST | External integrations, automation |
 | `VoiceChannel` | WebSocket + PCM audio | Edge node voice assistants |
+| `ScreencastChannel` | HTTP + WebSocket | Browser-based screen capture |
+| `ApiServer` | HTTP REST | Agent-as-a-Service API |
 
 ### Agent Runtime
 
@@ -154,7 +168,7 @@ MCP (Model Context Protocol) servers extend the tool set dynamically. Tools from
 
 ### Security Layer
 
-All inputs pass through the `InputSanitizer` (prompt injection detection) before reaching the LLM. All outputs pass through the `SecretCensor` (credential redaction) before reaching the user. The `SecretsDetector` identifies 9+ credential patterns (API keys, JWTs, private keys, etc.).
+All inputs pass through the `InputSanitizer` (prompt injection detection) before reaching the LLM. All outputs pass through the `SecretCensor` (credential redaction) before reaching the user. The `SecretsDetector` identifies 37+ credential patterns (API keys, JWTs, private keys, AWS, GCP, Azure, and more).
 
 Additional security subsystems:
 
@@ -164,6 +178,8 @@ Additional security subsystems:
 - **ContainerSandbox** -- Docker-based per-session isolation for tool execution, with network disabled, capabilities dropped, and resource limits enforced.
 - **InteractiveApproval** -- TUI that surfaces policy-denied operations for real-time operator approval with session-scoped "allow always" memory.
 - **RestPolicy** -- L7 per-host HTTP method and path rules evaluated after host-level network policy.
+- **LandlockPolicy** -- Linux Landlock LSM kernel-level filesystem enforcement via ctypes syscalls.
+- **SecurityScanner** -- Installation security auditor (`missy security scan`) for permissions, config hygiene, and exposed secrets.
 
 ### Persistence
 
@@ -171,7 +187,8 @@ Additional security subsystems:
 - **VectorMemoryStore** -- Optional FAISS-backed semantic search over text entries (`~/.missy/memory.faiss`). Uses TF-IDF hashing vectors for approximate nearest-neighbor retrieval without requiring an external embedding model.
 - **AuditLogger** -- Structured JSONL audit trail (`~/.missy/audit.jsonl`), optionally signed with the agent's Ed25519 identity.
 - **Learnings** -- Task outcomes extracted from tool-augmented runs, persisted in SQLite.
-- **CheckpointManager** -- Saves tool loop state for crash recovery.
+- **GraphMemoryStore** -- SQLite-backed entity-relationship graph memory with rule-based pattern matching (`~/.missy/graph_memory.db`).
+- **CheckpointManager** -- Saves tool loop state for crash recovery (`~/.missy/checkpoints.db`).
 
 ### Intelligence
 
@@ -179,6 +196,8 @@ Additional security subsystems:
 - **[MemoryConsolidator](sleep-mode.md)** -- Sleep mode that compresses conversation history when the context window reaches 80% capacity. Keeps the last 4 messages intact, extracts key facts from older messages, and replaces them with a summary.
 - **[AttentionSystem](attention.md)** -- Five-subsystem pipeline: alerting (urgency detection), orienting (topic extraction), sustained (focus continuity), selective (memory filtering), executive (tool prioritization).
 - **[MemorySynthesizer](memory-synthesizer.md)** -- Merges learnings, summaries, playbook entries, and conversation fragments into a single relevance-ranked context block within a 4500-token budget. Replaces separate memory injection.
+- **CondenserPipeline** -- 4-stage memory compression: observation masking, amortized forgetting, summarizing, windowing. Runs as part of consolidation.
+- **SleeptimeWorker** -- Background memory processing during idle periods: consolidation, indexing, pruning. Inspired by Letta sleeptime computing.
 - **[MessageBus](message-bus.md)** -- Async event bus with `fnmatch` topic wildcards, priority queue, correlation IDs, and both sync and async dispatch. Singleton pattern shared across all subsystems.
 
 ## Request Flow

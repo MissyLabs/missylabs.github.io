@@ -116,3 +116,48 @@ missy presets list
 ```
 
 Displays a table of preset names with their hosts, domains, and CIDRs.
+
+## missy cost
+
+Show cost tracking configuration and current session budget status.
+
+```bash
+missy cost
+missy cost --session SESSION_ID
+```
+
+## missy recover
+
+List incomplete checkpoints from previous sessions and optionally resume.
+
+```bash
+missy recover
+missy recover --abandon-all
+```
+
+## missy hatch
+
+Run the first-run bootstrap wizard (8-step idempotent initialization).
+
+```bash
+missy hatch
+missy hatch --non-interactive
+```
+
+## missy plugins
+
+List plugins and their status.
+
+```bash
+missy plugins
+```
+
+## missy skills
+
+List registered skills or scan for SKILL.md files.
+
+```bash
+missy skills
+missy skills scan
+missy skills scan --path ~/my-skills/
+```

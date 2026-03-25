@@ -30,15 +30,18 @@ This guide walks you through going from zero to a working Missy installation:
 Every capability -- network access, filesystem writes, shell commands, plugins -- is **disabled by default**. You explicitly enable what you need in `~/.missy/config.yaml`. The policy engine enforces these rules on every request, and every action is logged to a structured audit trail.
 
 ```
-CLI / Discord / Webhook / Voice
+CLI / Discord / Webhook / Voice / Screencast / API
          |
     AgentRuntime
-    +-- PolicyEngine (network / filesystem / shell)
-    +-- InputSanitizer + SecretsDetector
-    +-- ProviderRegistry (Anthropic / OpenAI / Ollama)
-    +-- ToolRegistry + MCP servers
-    +-- Memory + Learnings
-    +-- AuditLogger
+    +-- PolicyEngine (network / filesystem / shell / REST L7)
+    +-- InputSanitizer + SecretsDetector + PromptDriftDetector
+    +-- AgentIdentity (Ed25519) + TrustScorer + LandlockPolicy
+    +-- ProviderRegistry (Anthropic / OpenAI / Ollama) + RateLimiter
+    +-- ToolRegistry + MCP servers + SKILL.md discovery
+    +-- AttentionSystem + Playbook + CondenserPipeline
+    +-- Memory (SQLite + Vector + Graph) + Learnings
+    +-- PersonaManager + BehaviorLayer
+    +-- AuditLogger + OpenTelemetry
 ```
 
 Missy supports three AI providers out of the box:

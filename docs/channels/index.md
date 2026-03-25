@@ -15,6 +15,8 @@ Channels are the communication interfaces through which users interact with Miss
 | [Discord](discord/setup.md) | WebSocket Gateway API | Team collaboration, remote access | Bot token + application ID |
 | [Voice](voice/server.md) | WebSocket + binary audio | Hands-free via Raspberry Pi edge nodes | STT/TTS engines + edge hardware |
 | Webhook | HTTP POST | CI/CD pipelines, external integrations | Network policy for inbound port |
+| Screencast | HTTP + WebSocket | Browser-based screen capture and analysis | Token auth |
+| [REST API](../cli/api.md) | HTTP REST | Agent-as-a-Service programmatic access | API key |
 
 ## How channels work
 
@@ -41,11 +43,11 @@ User ──► Channel ──► AgentRuntime ──► Provider (Claude / GPT /
 
 ## Channel-specific capabilities
 
-| Feature | CLI | Discord | Voice | Webhook |
-|---------|-----|---------|-------|---------|
-| Interactive REPL | Yes | -- | -- | -- |
-| Single-shot queries | Yes | Yes | Yes | Yes |
-| Tool calling | Yes | Configurable per guild | Per-node policy | Yes |
-| Session persistence | Yes | Per-user/channel | Per-node | Per-request |
-| Streaming responses | Yes | -- | Audio streaming | -- |
-| Access control | OS user | DM policy + guild roles | Device pairing + policy modes | Network policy |
+| Feature | CLI | Discord | Voice | Webhook | Screencast | API |
+|---------|-----|---------|-------|---------|------------|-----|
+| Interactive REPL | Yes | -- | -- | -- | -- | -- |
+| Single-shot queries | Yes | Yes | Yes | Yes | Yes | Yes |
+| Tool calling | Yes | Configurable per guild | Per-node policy | Yes | Yes | Yes |
+| Session persistence | Yes | Per-user/channel | Per-node | Per-request | Per-session | Per-request |
+| Streaming responses | Yes | -- | Audio streaming | -- | -- | -- |
+| Access control | OS user | DM policy + guild roles | Device pairing + policy modes | Network policy | Token auth | API key |

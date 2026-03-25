@@ -140,12 +140,15 @@ nav:
     - Security:
       - security/index.md
       - Policy Engine: security/policy-engine.md
+      - Network Policy: security/network-policy.md
       - Gateway Enforcement: security/gateway.md
       - Input Sanitization: security/input-sanitization.md
       - Secrets Detection: security/secrets-detection.md
       - Prompt Drift Detection: security/prompt-drift.md
       - Agent Identity: security/agent-identity.md
       - Trust Scoring: security/trust-scoring.md
+      - Landlock LSM: security/landlock.md
+      - Security Scanner: security/scanner.md
       - Container Sandbox: security/container-sandbox.md
       - Vault: security/vault.md
       - Threat Model: security/threat-model.md
@@ -160,6 +163,9 @@ nav:
       - Sleep Mode: architecture/sleep-mode.md
       - Memory Synthesizer: architecture/memory-synthesizer.md
       - Attention System: architecture/attention.md
+      - Condenser Pipeline: architecture/condenser-pipeline.md
+      - Sleeptime Computing: architecture/sleeptime.md
+      - Graph Memory: architecture/graph-memory.md
       - Message Bus: architecture/message-bus.md
 
     - CLI Reference:
@@ -170,6 +176,13 @@ nav:
       - Vault Commands: cli/vault.md
       - Config Commands: cli/config.md
       - MCP Commands: cli/mcp.md
+      - Vision Commands: cli/vision.md
+      - Persona Commands: cli/persona.md
+      - API Commands: cli/api.md
+      - Security Commands: cli/security.md
+      - Evolve Commands: cli/evolve.md
+      - Device Commands: cli/devices.md
+      - Voice Commands: cli/voice.md
 
     - Channels:
       - channels/index.md
