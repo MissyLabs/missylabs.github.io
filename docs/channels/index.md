@@ -17,6 +17,10 @@ Channels are the communication interfaces through which users interact with Miss
 | [Webhook](webhook.md) | HTTP POST | CI/CD pipelines, external integrations | Network policy for inbound port |
 | [Screencast](screencast.md) | HTTP + WebSocket | Browser-based screen capture and analysis | Token auth |
 | [REST API](../operations/rest-api.md) | HTTP REST | Agent-as-a-Service programmatic access | API key |
+| [Operator Console](../operations/operator-console.md) | HTTP + Server-Sent Events | Browser dashboard: chat with live run streaming, providers/tools/sessions status, scheduler jobs, memory browser, audit trail | API key (used as the login password) |
+
+!!! tip "Just want a web UI? Start here"
+    `missy api start` launches both the REST API *and* a full browser dashboard at `http://127.0.0.1:8080/` — no separate install or config needed. Sign in with your API key and you get a live chat panel plus admin views for everything else. See [Operator Console](../operations/operator-console.md).
 
 ## How channels work
 
@@ -43,11 +47,14 @@ User ──► Channel ──► AgentRuntime ──► Provider (Claude / GPT /
 
 ## Channel-specific capabilities
 
-| Feature | CLI | Discord | Voice | Webhook | Screencast | API |
-|---------|-----|---------|-------|---------|------------|-----|
-| Interactive REPL | Yes | -- | -- | -- | -- | -- |
-| Single-shot queries | Yes | Yes | Yes | Yes | Yes | Yes |
-| Tool calling | Yes | Configurable per guild | Per-node policy | Yes | Yes | Yes |
-| Session persistence | Yes | Per-user/channel | Per-node | Per-request | Per-session | Per-request |
-| Streaming responses | Yes | -- | Audio streaming | -- | -- | -- |
-| Access control | OS user | DM policy + guild roles | Device pairing + policy modes | Network policy | Token auth | API key |
+| Feature | CLI | Discord | Voice | Webhook | Screencast | API | Console |
+|---------|-----|---------|-------|---------|------------|-----|---------|
+| Interactive REPL | Yes | -- | -- | -- | -- | -- | Yes (browser chat panel) |
+| Single-shot queries | Yes | Yes | Yes | Yes | Yes | Yes | Yes |
+| Tool calling | Yes | Configurable per guild | Per-node policy | Yes | Yes | Yes | Yes |
+| Session persistence | Yes | Per-user/channel | Per-node | Per-request | Per-session | Per-request | Per-request |
+| Streaming responses | Yes | -- | Audio streaming | -- | -- | -- | Yes (SSE run events) |
+| Access control | OS user | DM policy + guild roles | Device pairing + policy modes | Network policy | Token auth | API key | API key (cookie session) |
+
+!!! note "Console vs. REST API"
+    The Operator Console and REST API are the same server (`missy api start`) exposing two faces of the same thing: the console is the browser UI, the REST API is what the console (or your own scripts) call underneath. You don't run them separately.

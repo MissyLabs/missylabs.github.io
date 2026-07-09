@@ -85,8 +85,12 @@ After completing these steps, Missy has:
 !!! note "Security defaults"
     Out of the box, Missy operates with **all capabilities disabled**. It can answer questions and use its built-in tools, but it cannot execute shell commands, write to arbitrary paths, or make network requests outside the configured provider. Enable additional capabilities in `~/.missy/config.yaml` as needed.
 
+!!! tip "Prefer a browser?"
+    `missy api start` serves a full dashboard at `http://127.0.0.1:8080/` — chat with live tool-call streaming, plus provider/session/scheduler/memory/audit panels — using the same config you just created. See [Operator Console](../operations/operator-console.md).
+
 ## Next steps
 
 - [Setup Wizard reference](setup-wizard.md) -- all wizard options including non-interactive mode
 - [Your First Conversation](first-conversation.md) -- interactive REPL, tools, and sessions
+- [Operator Console](../operations/operator-console.md) -- browser dashboard alternative to the CLI
 - [Configuration Reference](../configuration/reference.md) -- full config.yaml schema

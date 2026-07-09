@@ -149,3 +149,4 @@ CLI / Discord / Webhook / Voice / Screencast / API
 | **Voice** | WebSocket server + Raspberry Pi edge nodes with wake word |
 | **Screencast** | Browser-based screen capture with token auth |
 | **REST API** | Agent-as-a-Service with API key auth and rate limiting |
+| **[Operator Console](../operations/operator-console.md)** | Browser dashboard served by `missy api start` — live chat with streaming tool calls, plus providers/tools/sessions/scheduler/memory/audit panels. No separate install; sign in at `http://127.0.0.1:8080/` with your API key. |
