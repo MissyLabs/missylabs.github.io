@@ -167,6 +167,15 @@ nav:
       - Sleeptime Computing: architecture/sleeptime.md
       - Graph Memory: architecture/graph-memory.md
       - Message Bus: architecture/message-bus.md
+      - Vision Subsystem: architecture/vision.md
+      - Reliability (Failure Tracking, Watchdog, Proactive): architecture/reliability.md
+      - Structured Output: architecture/structured-output.md
+      - Code Evolution: architecture/code-evolution.md
+      - Summarizer: architecture/summarizer.md
+      - Compaction: architecture/compaction.md
+      - Hatching: architecture/hatching.md
+      - Persona: architecture/persona.md
+      - Behavior Layer: architecture/behavior.md
 
     - CLI Reference:
       - cli/index.md
@@ -183,6 +192,12 @@ nav:
       - Evolve Commands: cli/evolve.md
       - Device Commands: cli/devices.md
       - Voice Commands: cli/voice.md
+      - Gateway Commands: cli/gateway.md
+      - Discord Commands: cli/discord.md
+      - Approvals Commands: cli/approvals.md
+      - Patches Commands: cli/patches.md
+      - Sandbox Commands: cli/sandbox.md
+      - Sessions Commands: cli/sessions.md
 
     - Channels:
       - channels/index.md
@@ -194,6 +209,8 @@ nav:
         - Server Setup: channels/voice/server.md
         - Protocol: channels/voice/protocol.md
         - Device Management: channels/voice/devices.md
+      - Webhook: channels/webhook.md
+      - Screencast: channels/screencast.md
 
     - Providers:
       - providers/index.md
@@ -220,6 +237,8 @@ nav:
       - operations/index.md
       - Backup & Recovery: operations/backup.md
       - Observability: operations/observability.md
+      - REST API Reference: operations/rest-api.md
+      - Operator Console: operations/operator-console.md
       - Troubleshooting: operations/troubleshooting.md
 
   - Leyline:

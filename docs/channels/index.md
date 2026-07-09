@@ -14,9 +14,9 @@ Channels are the communication interfaces through which users interact with Miss
 | [CLI](cli.md) | stdin/stdout | Interactive terminal sessions, scripts | None (built-in) |
 | [Discord](discord/setup.md) | WebSocket Gateway API | Team collaboration, remote access | Bot token + application ID |
 | [Voice](voice/server.md) | WebSocket + binary audio | Hands-free via Raspberry Pi edge nodes | STT/TTS engines + edge hardware |
-| Webhook | HTTP POST | CI/CD pipelines, external integrations | Network policy for inbound port |
-| Screencast | HTTP + WebSocket | Browser-based screen capture and analysis | Token auth |
-| [REST API](../cli/api.md) | HTTP REST | Agent-as-a-Service programmatic access | API key |
+| [Webhook](webhook.md) | HTTP POST | CI/CD pipelines, external integrations | Network policy for inbound port |
+| [Screencast](screencast.md) | HTTP + WebSocket | Browser-based screen capture and analysis | Token auth |
+| [REST API](../operations/rest-api.md) | HTTP REST | Agent-as-a-Service programmatic access | API key |
 
 ## How channels work
 
